@@ -17,10 +17,44 @@ const projectsUrl = config.apiUrl + '/api/posts/top?limit=3&start_date=' + start
 const newcomersUrl = config.apiUrl + '/api/posts/top?limit=3&start_date=' + startDate + '&end_date=' + endDate + '&only_new=true';
 const contributionsUrl = config.apiUrl + '/api/posts/top?limit=3&start_date=' + startDate + '&end_date=' + endDate + '&retrieve_by=contributions';
 
+
+
 // get utopian projects/contributions
-// request(projectsUrl, (err, response, body) => {
-//   console.log(body);
-// });
+
+var data = {
+  projectsData: null,
+  necomersData: null,
+  contributionsData: null
+};
+
+var getData = new Promise((yes, no) => {
+    request(projectsUrl, (err, response, body) => {
+        resolve(body);
+    });
+});
+
+getData.then((projectsData) => {
+    data.projectsData = projectsData
+    request(newcomersUrl, (err, response, body) => {
+        resolve(body);
+    });
+})
+
+getData.then((newcomersData) => {
+    data.newcomersData = newcomersData
+    request(contributionsUrl, (err, response, body) => {
+        resolve(body);
+    });
+})
+
+getData.then((contributionsData) => {
+    data.contributionsData = contributionsData
+    //now access data. for the requested response
+})
+
+
+
+
 
 const projects = [
     {
