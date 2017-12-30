@@ -13,9 +13,9 @@ let endDate = new Date();
 endDate = endDate.getFullYear() + '-' + endDate.getMonth() + '-' + endDate.getDate();
 
 // API endpoints
-const projectsUrl = config.apiUrl + '/api/posts/top?limit=3&start_date=' + startDate + '1&end_date=' + endDate;
-const newcomersUrl = config.apiUrl + '/api/posts/top?limit=3&start_date=' + startDate + '1&end_date=' + endDate + '&only_new=true';
-const contributionsUrl = config.apiUrl + '/api/posts/top?limit=3&start_date=' + startDate + '1&end_date=' + endDate + '&retrieve_by=contributions';
+const projectsUrl = config.apiUrl + '/api/posts/top?limit=3&start_date=' + startDate + '&end_date=' + endDate;
+const newcomersUrl = config.apiUrl + '/api/posts/top?limit=3&start_date=' + startDate + '&end_date=' + endDate + '&only_new=true';
+const contributionsUrl = config.apiUrl + '/api/posts/top?limit=3&start_date=' + startDate + '&end_date=' + endDate + '&retrieve_by=contributions';
 
 // get utopian projects/contributions
 // request(projectsUrl, (err, response, body) => {
@@ -118,7 +118,7 @@ fs.readFile('./src/template.md', 'utf-8', function read(err, rawTemplate) {
       config.wif,
       'mkt', // Parent Author
       'steemline-beta-typescript-and-steemconnect-integration-maintainer-wanted-50-steem', // Parent Permlink
-      'mkt', // Author
+      'guest123', // Author
       permlink, // Permlink
       'Utopian Weekly', // Title
       template, // Body,
