@@ -100,7 +100,7 @@ getData.then((contributions) => {
 
     // post on steemit.com
     if (!config.generateOnly) {
-      var permlink = new Date().toISOString().replace(/[^a-zA-Z0-9]+/g, '').toLowerCase();
+      let permlink = new Date().toISOString().replace(/[^a-zA-Z0-9]+/g, '').toLowerCase();
 
       steem.broadcast.comment(
         config.wif,
@@ -134,4 +134,35 @@ function generateAndSaveTemplate(ext, content, number, data) {
   });
 
   return content;
+}
+
+
+function getModerators() {
+    return new Promise((yes, no) => {
+        request(config.apiUrl + '/api/moderators', (err, res, body) => {
+            if (err) no(err);
+            yes(JSON.parse(body));
+        })
+    }).then((response) => {
+        let mods = [];
+        response.results.forEach((mod) => {
+            mods.push(mod.account);
+        });
+        return mods;
+    })
+}
+
+function getSponsors() {
+    return new Promise((yes, no) => {
+        request(config.apiUrl + '/api/sponsors', (err, res, body) => {
+            if (err) no(err);
+            yes(JSON.parse(body));
+        })
+    }).then((response) => {
+        let sponsors = [];
+        response.results.forEach((sponsor) => {
+            sponsors.push(sponsor.account);
+        });
+        return sponsors;
+    })
 }
