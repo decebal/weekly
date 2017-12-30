@@ -2,6 +2,7 @@
 const nodemailer = require('nodemailer');
 const request = require('request');
 const fs = require('fs');
+const steem = require('steem');
 const config = require('../config.js');
 
 // date settings
@@ -12,13 +13,15 @@ let endDate = new Date();
 endDate = endDate.getFullYear() + '-' + endDate.getMonth() + '-' + endDate.getDate();
 
 // API endpoints
-const projectsUrl = config.api.url + '/api/posts/top?limit=3&start_date=' + startDate + '1&end_date=' + endDate + '&include_rewards=true&only_new=true';
-const contributionsUrl = config.api.url + '/api/posts/top?limit=3&start_date=' + startDate + '1&end_date=' + endDate + '&include_rewards=true&only_new=true';
+const projectsUrl = config.apiUrl + '/api/posts/top?limit=3&start_date=' + startDate + '1&end_date=' + endDate;
+const newcomersUrl = config.apiUrl + '/api/posts/top?limit=3&start_date=' + startDate + '1&end_date=' + endDate + '&only_new=true';
+const contributionsUrl = config.apiUrl + '/api/posts/top?limit=3&start_date=' + startDate + '1&end_date=' + endDate + '&retrieve_by=contributions';
 
 // get utopian projects/contributions
-// request({url: projectsUrl, headers: {'session': config.api.accessToken}}, (err, response, body) => {
+// request(projectsUrl, (err, response, body) => {
 //   console.log(body);
 // });
+
 const projects = [
     {
       title: 'Project 1',
@@ -44,7 +47,7 @@ const projects = [
 ];
 const contributions = [
   {
-    title: 'Contribution 1',
+    title: 'Labore et dolore magna aliquyam erat, sed diam voluptu.',
     rewards: 128,
     link: 'https://utopian.io/',
     image: 'https://steemitimages.com/DQmeJMFbZ76XVMy5RLP6StyUKXCh6DHVFyBWJLTRZ96FgdK/header.png'
@@ -80,10 +83,10 @@ fs.readFile('./src/template.html', 'utf-8', function read(err, rawTemplate) {
         throw err;
     }
 
-    let template = generateAndSaveTemplate('html', rawTemplate, '1/2018', projects, contributions);
+    const template = generateAndSaveTemplate('html', rawTemplate, '1/2018', projects, contributions);
 
     // mail setup
-    let mailOptions = {
+    const mailOptions = {
         from: config.mail.from,
         to: config.mail.testRecipient,
         subject: 'Utopian Weekly',
@@ -98,6 +101,32 @@ fs.readFile('./src/template.html', 'utf-8', function read(err, rawTemplate) {
         }
         console.log('Message sent: %s', info.messageId);
     });
+});
+
+// read markdown template
+fs.readFile('./src/template.md', 'utf-8', function read(err, rawTemplate) {
+    if (err) {
+        throw err;
+    }
+
+    const template = generateAndSaveTemplate('md', rawTemplate, '1/2018', projects, contributions);
+
+    // post on steemit.com
+    var permlink = new Date().toISOString().replace(/[^a-zA-Z0-9]+/g, '').toLowerCase();
+
+    steem.broadcast.comment(
+      config.wif,
+      'mkt', // Parent Author
+      'steemline-beta-typescript-and-steemconnect-integration-maintainer-wanted-50-steem', // Parent Permlink
+      'mkt', // Author
+      permlink, // Permlink
+      'Utopian Weekly', // Title
+      template, // Body,
+      {tags: ['test'], app: 'steemjs/utopianweekly'}, // Json Metadata
+      (err, result) => {
+        console.log(err, result);
+      }
+    );
 });
 
 // fill template with data and save static file

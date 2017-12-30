@@ -3,6 +3,7 @@ var config = {
     url: 'https://api.utopian.io',
     accessToken: ''
   },
+  wif: 'posting-key-for-steem-account',
   smtp: {
     host: 'host.tld',
     user: 'user',

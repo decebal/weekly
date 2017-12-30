@@ -1,6 +1,6 @@
 <center>![header.png](https://steemitimages.com/DQmeJMFbZ76XVMy5RLP6StyUKXCh6DHVFyBWJLTRZ96FgdK/header.png)</center>
 
-# <center>#2/2017</center>
+# <center>${NUMBERING}</center>
 
 ### <center>**[Utopian.io](https://utopian.io) presents this week's most interesting open source projects and the best contributions from our community.**</center>
 
@@ -12,29 +12,26 @@
 
 <table><tr><td>
 
-### [Steemauto.com](https://utopian.io/utopian-io/@mahdiyari/open-source-steemauto-com-or-curation-trail-fanbase-scheduled-posts) | Curation Trail, Fanbase, Scheduled Posts, ...
- Development of :  Steemauto.com
+### [${PROJECT_1_TITLE}](${PROJECT_1_URL})
+${PROJECT_1_DESCRIPTION}
 
-[![steemauto.png](https://steemitimages.com/DQmWoiw9icjG1cArWZ7QUWrgkpvb7cV6WhS9Z9Rm53ghj8m/steemauto.png)](https://utopian.io/utopian-io/@mahdiyari/open-source-steemauto-com-or-curation-trail-fanbase-scheduled-posts)
+[![${PROJECT_1_TITLE}](${PROJECT_1_IMAGE})](${PROJECT_1_URL})
 
 </td></tr></table>
 
 <table><tr><td>
 
-**[SteemApps](https://utopian.io/utopian-io/@nhj12311/dev-introducing-the-steem-apps-site-i-created)**
+### [${PROJECT_2_TITLE}](${PROJECT_2_URL})
+${PROJECT_2_DESCRIPTION}
 
-**Introducing the 'steem apps' site I created.**
- Development of :  SteemApps
-
-[![weekly-image-container.png](https://steemitimages.com/DQmeBk59v63Q5pzmRdKPCPgKnGzsH8KARS31x4DNHWrq8pS/weekly-image-container.png)](https://utopian.io/utopian-io/@nhj12311/dev-introducing-the-steem-apps-site-i-created)
+[![${PROJECT_2_TITLE}](${PROJECT_2_IMAGE})](${PROJECT_2_URL})
 
 </td><td>
 
-**[SteemPlus 1.7.1](https://utopian.io/utopian-io/@steem-plus/steemplus-1-7-1-i-used-your-contributions-on-utopian-to-make-steemplus-better)**
-**I used your contributions on Utopian to make SteemPlus better**
- Development of :  SteemPlus
+### [${PROJECT_3_TITLE}](${PROJECT_3_URL})
+${PROJECT_3_DESCRIPTION}
 
-[![steemplus.png](https://steemitimages.com/DQmQxWWJ5RLw1CwYPzYx1diKtQP3aVRVfDqv5Kk5cjMzsPh/steemplus.png)](https://utopian.io/utopian-io/@steem-plus/steemplus-1-7-1-i-used-your-contributions-on-utopian-to-make-steemplus-better)
+[![${PROJECT_3_TITLE}](${PROJECT_3_IMAGE})](${PROJECT_3_URL})
 
 </td></tr></table>
 
