@@ -20,6 +20,7 @@ const contributionsUrl = config.apiUrl + '/api/posts/top?limit=3&start_date=' + 
 
 // get utopian projects/contributions
 let data = {
+  numbering: '1/2018',
   projects: null,
   newcomers: null,
   contributions: null
@@ -63,12 +64,13 @@ getData.then((contributions) => {
   });
 
   // read html template
-  fs.readFile('./src/template.html', 'utf-8', function read(err, rawTemplate) {
+  twig.renderFile('./src/template.html', {data}, (err, template) => {
     if (err) {
       throw err;
     }
 
-    const template = generateAndSaveTemplate('html', rawTemplate, '1/2018', data);
+    // save template
+    saveTemplate(template, 'html');
 
     if (!config.generateOnly) {
       // mail setup
@@ -91,12 +93,13 @@ getData.then((contributions) => {
   });
 
   // read markdown template
-  fs.readFile('./src/template.md', 'utf-8', function read(err, rawTemplate) {
+  twig.renderFile('./src/template.md', {data}, (err, template) => {
     if (err) {
         throw err;
     }
 
-    const template = generateAndSaveTemplate('md', rawTemplate, '1/2018', data);
+    // save template
+    saveTemplate(template, 'md');
 
     // post on steemit.com
     if (!config.generateOnly) {
@@ -120,20 +123,15 @@ getData.then((contributions) => {
 });
 
 // fill template with data and save static file
-function generateAndSaveTemplate(ext, content, number, data) {
-  // insert number
-  content = content.replace('${NUMBERING}', number);
-
+function saveTemplate(template, ext) {
   // save file
   let filename = './static/archive/utopian-weekly-' + startDate + '-' + endDate + '.' + ext;
-  fs.writeFile(filename, content, function(err) {
+  fs.writeFile(filename, template, function(err) {
     if (err) {
         return console.log(err);
     }
     console.log('Template saved! (' + filename + ')');
   });
-
-  return content;
 }
 
 

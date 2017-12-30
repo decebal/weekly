@@ -1,8 +1,6 @@
-{{ 'hello' }}
-
 <center>![header.png](https://steemitimages.com/DQmeJMFbZ76XVMy5RLP6StyUKXCh6DHVFyBWJLTRZ96FgdK/header.png)</center>
 
-# <center>${NUMBERING}</center>
+# <center>{{ data.numbering }}</center>
 
 ### <center>**[Utopian.io](https://utopian.io) presents this week's most interesting open source projects and the best contributions from our community.**</center>
 
@@ -14,26 +12,26 @@
 
 <table><tr><td>
 
-### [${PROJECT_1_TITLE}](${PROJECT_1_URL}) (${PROJECT_1_CONTRIBUTIONS} Contributions)
-${PROJECT_1_DESCRIPTION}
+### [{{ data.projects[0].github.name }}]({{ data.projects[0].project_url }}) ({{ data.projects[0].count }} Contributions)
+{{ data.projects[0].github.description }}
 
-[![${PROJECT_1_TITLE}](${PROJECT_1_IMAGE})](${PROJECT_1_URL})
+[![{{ data.projects[0].github.name }}](${PROJECT_1_IMAGE})]({{ data.projects[0].project_url }})
 
 </td></tr></table>
 
 <table><tr><td>
 
-### [${PROJECT_2_TITLE}](${PROJECT_2_URL}) (${PROJECT_3_CONTRIBUTIONS} Contributions)
-${PROJECT_2_DESCRIPTION}
+### [{{ data.projects[1].github.name }}]({{ data.projects[1].project_url }}) ({{ data.projects[1].count }} Contributions)
+{{ data.projects[1].github.description }}
 
-[![${PROJECT_2_TITLE}](${PROJECT_2_IMAGE})](${PROJECT_2_URL})
+[![{{ data.projects[1].github.name }}](${PROJECT_1_IMAGE})]({{ data.projects[1].project_url }})
 
 </td><td>
 
-### [${PROJECT_3_TITLE}](${PROJECT_3_URL}) (${PROJECT_3_CONTRIBUTIONS} Contributions)
-${PROJECT_3_DESCRIPTION}
+### [{{ data.projects[2].github.name }}]({{ data.projects[2].project_url }}) ({{ data.projects[2].count }} Contributions)
+{{ data.projects[2].github.description }}
 
-[![${PROJECT_3_TITLE}](${PROJECT_3_IMAGE})](${PROJECT_3_URL})
+[![{{ data.projects[2].github.name }}](${PROJECT_1_IMAGE})]({{ data.projects[2].project_url }})
 
 </td></tr></table>
 
@@ -42,33 +40,33 @@ ${PROJECT_3_DESCRIPTION}
 
 <table><tr><td>
 
-### [${NEWCOMER_1_TITLE}](${NEWCOMER_1_URL}) (${NEWCOMER_1_CONTRIBUTIONS} Contributions)
-${NEWCOMER_1_DESCRIPTION}
+### [{{ data.newcomers[0].github.name }}]({{ data.newcomers[0].project_url }}) ({{ data.newcomers[0].count }} Contributions)
+{{ data.newcomers[0].github.description }}
 
-[![${NEWCOMER_1_TITLE}](${NEWCOMER_1_IMAGE})](${NEWCOMER_1_URL})
+[![{{ data.newcomers[0].github.name }}](${PROJECT_1_IMAGE})]({{ data.newcomers[0].project_url }})
 
 </td><td>
 
-### [${NEWCOMER_2_TITLE}](${NEWCOMER_2_URL}) (${NEWCOMER_2_CONTRIBUTIONS} Contributions)
-${NEWCOMER_2_DESCRIPTION}
+### [{{ data.newcomers[1].github.name }}]({{ data.newcomers[1].project_url }}) ({{ data.newcomers[1].count }} Contributions)
+{{ data.newcomers[1].github.description }}
 
-[![${NEWCOMER_2_TITLE}](${NEWCOMER_2_IMAGE})](${NEWCOMER_2_URL})
+[![{{ data.newcomers[1].github.name }}](${PROJECT_1_IMAGE})]({{ data.newcomers[1].project_url }})
 
 </td></tr></table>
 
 <table><tr><td>
 
-### [${NEWCOMER_3_TITLE}](${NEWCOMER_3_URL}) (${NEWCOMER_3_CONTRIBUTIONS} Contributions)
-${NEWCOMER_3_DESCRIPTION}
+### [{{ data.newcomers[2].github.name }}]({{ data.newcomers[2].project_url }}) ({{ data.newcomers[2].count }} Contributions)
+{{ data.newcomers[2].github.description }}
 
-[![${NEWCOMER_3_TITLE}](${NEWCOMER_3_IMAGE})](${NEWCOMER_3_URL})
+[![{{ data.newcomers[2].github.name }}](${PROJECT_1_IMAGE})]({{ data.newcomers[2].project_url }})
 
 </td><td>
 
-### [${NEWCOMER_4_TITLE}](${NEWCOMER_4_URL}) (${NEWCOMER_4_CONTRIBUTIONS} Contributions)
-${NEWCOMER_4_DESCRIPTION}
+### [{{ data.newcomers[3].github.name }}]({{ data.newcomers[3].project_url }}) ({{ data.newcomers[3].count }} Contributions)
+{{ data.newcomers[3].github.description }}
 
-[![${NEWCOMER_4_TITLE}](${NEWCOMER_4_IMAGE})](${NEWCOMER_4_URL})
+[![{{ data.newcomers[3].github.name }}](${PROJECT_1_IMAGE})]({{ data.newcomers[3].project_url }})
 
 
 </td></tr></table>
