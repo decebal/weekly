@@ -17,8 +17,6 @@ const projectsUrl = config.apiUrl + '/api/posts/top?limit=3&start_date=' + start
 const newcomersUrl = config.apiUrl + '/api/posts/top?limit=3&start_date=' + startDate + '&end_date=' + endDate + '&only_new=true';
 const contributionsUrl = config.apiUrl + '/api/posts/top?limit=3&start_date=' + startDate + '&end_date=' + endDate + '&retrieve_by=contributions';
 
-
-
 // get utopian projects/contributions
 
 var data = {
