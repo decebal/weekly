@@ -1,6 +1,7 @@
 'use strict';
 const nodemailer = require('nodemailer');
 const request = require('request');
+const fs = require('fs');
 const config = require('../config.js');
 
 // date settings
@@ -15,34 +16,103 @@ const projectsUrl = config.api.url + '/api/posts/top?limit=3&start_date=' + star
 const contributionsUrl = config.api.url + '/api/posts/top?limit=3&start_date=' + startDate + '1&end_date=' + endDate + '&include_rewards=true&only_new=true';
 
 // get utopian projects/contributions
-request({url: projectsUrl, headers: {'session': config.api.accessToken}}, (err, response, body) => {
-  console.log(body);
-});
+// request({url: projectsUrl, headers: {'session': config.api.accessToken}}, (err, response, body) => {
+//   console.log(body);
+// });
+const projects = [
+    {
+      title: 'Project 1',
+      contributions: 54,
+      rewards: 1280,
+      link: 'https://utopian.io/',
+      image: 'https://steemitimages.com/DQmeJMFbZ76XVMy5RLP6StyUKXCh6DHVFyBWJLTRZ96FgdK/header.png'
+    },
+    {
+      title: 'Project 2',
+      contributions: 48,
+      rewards: 860,
+      link: 'https://utopian.io/',
+      image: 'https://steemitimages.com/DQmeJMFbZ76XVMy5RLP6StyUKXCh6DHVFyBWJLTRZ96FgdK/header.png'
+    },
+    {
+      title: 'Project 3',
+      contributions: 26,
+      rewards: 390,
+      link: 'https://utopian.io/',
+      image: 'https://steemitimages.com/DQmeJMFbZ76XVMy5RLP6StyUKXCh6DHVFyBWJLTRZ96FgdK/header.png'
+    }
+];
+const contributions = [
+  {
+    title: 'Contribution 1',
+    rewards: 128,
+    link: 'https://utopian.io/',
+    image: 'https://steemitimages.com/DQmeJMFbZ76XVMy5RLP6StyUKXCh6DHVFyBWJLTRZ96FgdK/header.png'
+  },
+  {
+    title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
+    rewards: 86,
+    link: 'https://utopian.io/',
+    image: 'https://steemitimages.com/DQmeJMFbZ76XVMy5RLP6StyUKXCh6DHVFyBWJLTRZ96FgdK/header.png'
+  },
+  {
+    title: 'Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut.',
+    rewards: 39,
+    link: 'https://utopian.io/',
+    image: 'https://steemitimages.com/DQmeJMFbZ76XVMy5RLP6StyUKXCh6DHVFyBWJLTRZ96FgdK/header.png'
+  }
+];
 
 // create reusable transporter object using the default SMTP transport
-let transporter = nodemailer.createTransport({
+let mailer = nodemailer.createTransport({
     host: config.smtp.host,
     port: 587,
     secure: false, // true for 465, false for other ports
     auth: {
-        user: config.smtp.user, // generated ethereal user
-        pass: config.smtp.pass  // generated ethereal password
+        user: config.smtp.user,
+        pass: config.smtp.pass
     }
 });
 
-// setup email data with unicode symbols
-let mailOptions = {
-    from: config.mail.from, // sender address
-    to: config.mail.testRecipient, // list of receivers
-    subject: 'Utopian Weekly', // Subject line
-    text: 'Utopian Weekly', // plain text body
-    html: '<h1>Utopian Weekly</h1>' // html body
-};
-
-// send mail with defined transport object
-transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-        return console.log(error);
+// read html template
+fs.readFile('./src/template.html', 'utf-8', function read(err, rawTemplate) {
+    if (err) {
+        throw err;
     }
-    console.log('Message sent: %s', info.messageId);
+
+    let template = generateAndSaveTemplate('html', rawTemplate, '1/2018', projects, contributions);
+
+    // mail setup
+    let mailOptions = {
+        from: config.mail.from,
+        to: config.mail.testRecipient,
+        subject: 'Utopian Weekly',
+        text: 'Utopian Weekly',
+        html: template
+    };
+
+    // send mail
+    mailer.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            return console.log(error);
+        }
+        console.log('Message sent: %s', info.messageId);
+    });
 });
+
+// fill template with data and save static file
+function generateAndSaveTemplate(ext, content, number, projects, contributions) {
+  // replace placeholders
+  content = content.replace('${NUMBERING}', number);
+
+  // save file
+  let filename = './static/archive/utopian-weekly-' + startDate + '-' + endDate + '.' + ext;
+  fs.writeFile(filename, content, function(err) {
+    if (err) {
+        return console.log(err);
+    }
+    console.log('Template saved! (' + filename + ')');
+  });
+
+  return content;
+}
