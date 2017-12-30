@@ -1,6 +1,23 @@
 'use strict';
 const nodemailer = require('nodemailer');
+const request = require('request');
 const config = require('../config.js');
+
+// date settings
+let startDate = new Date();
+startDate.setDate(startDate.getDate() - 7); // one week ago
+startDate = startDate.getFullYear() + '-' + startDate.getMonth() + '-' + startDate.getDate();
+let endDate = new Date();
+endDate = endDate.getFullYear() + '-' + endDate.getMonth() + '-' + endDate.getDate();
+
+// API endpoints
+const projectsUrl = config.api.url + '/api/posts/top?limit=3&start_date=' + startDate + '1&end_date=' + endDate + '&include_rewards=true&only_new=true';
+const contributionsUrl = config.api.url + '/api/posts/top?limit=3&start_date=' + startDate + '1&end_date=' + endDate + '&include_rewards=true&only_new=true';
+
+// get utopian projects/contributions
+request({url: projectsUrl, headers: {'session': config.api.accessToken}}, (err, response, body) => {
+  console.log(body);
+});
 
 // create reusable transporter object using the default SMTP transport
 let transporter = nodemailer.createTransport({

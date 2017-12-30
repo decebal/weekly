@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "nodemailer": "^4.4.1",
+    "request": "^2.83.0",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
   },

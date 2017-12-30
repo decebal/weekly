@@ -1,4 +1,8 @@
-var config ={
+var config = {
+  api: {
+    url: 'https://api.utopian.io',
+    accessToken: ''
+  },
   smtp: {
     host: 'host.tld',
     user: 'user',
