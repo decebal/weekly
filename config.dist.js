@@ -1,8 +1,5 @@
 var config = {
-  api: {
-    url: 'https://api.utopian.io',
-    accessToken: ''
-  },
+  apiUrl: 'https://api.utopian.io',
   wif: 'posting-key-for-steem-account',
   smtp: {
     host: 'host.tld',
