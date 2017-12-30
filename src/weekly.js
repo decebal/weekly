@@ -3,7 +3,7 @@ const nodemailer = require('nodemailer');
 const request = require('request');
 const fs = require('fs');
 const steem = require('steem');
-const config = require('../config.js');
+const config = require('../config');
 
 // date settings
 let startDate = new Date();
