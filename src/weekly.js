@@ -23,7 +23,7 @@ const contributionsUrl = config.apiUrl + '/api/posts/top?limit=3&start_date=' + 
 
 var data = {
   projectsData: null,
-  necomersData: null,
+  newcomersData: null,
   contributionsData: null
 };
 
