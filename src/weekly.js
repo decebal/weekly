@@ -3,7 +3,7 @@ const nodemailer = require('nodemailer');
 const request = require('request');
 const fs = require('fs');
 const steem = require('steem');
-const config = require('../config.js');
+const config = require('../config');
 
 // date settings
 let startDate = new Date();
@@ -19,13 +19,13 @@ const contributionsUrl = config.apiUrl + '/api/posts/top?limit=3&start_date=' + 
 
 // get utopian projects/contributions
 
-var data = {
+let data = {
   projectsData: null,
   newcomersData: null,
   contributionsData: null
 };
 
-var getData = new Promise((yes, no) => {
+let getData = new Promise((yes, no) => {
     request(projectsUrl, (err, response, body) => {
         if (err) no(err);
         yes(body);
@@ -35,22 +35,21 @@ var getData = new Promise((yes, no) => {
 getData.then((projectsData) => {
     data.projectsData = projectsData
     request(newcomersUrl, (err, response, body) => {
-        if (err) no(err);
-        yes(body);
+        if (err) console.log(err);
+        return body;
     });
-})
+});
 
 getData.then((newcomersData) => {
     data.newcomersData = newcomersData
     request(contributionsUrl, (err, response, body) => {
-        if (err) no(err);
-        yes(body);
+        if (err) console.log(err);
+        return body;
     });
-})
+});
 
 getData.then((contributionsData) => {
     data.contributionsData = contributionsData
-
     const projects = [
         {
             title: 'Project 1',
@@ -159,7 +158,7 @@ getData.then((contributionsData) => {
     });
 
 
-})
+});
 
 
 
