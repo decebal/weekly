@@ -1,3 +1,5 @@
+{{ 'hello' }}
+
 <center>![header.png](https://steemitimages.com/DQmeJMFbZ76XVMy5RLP6StyUKXCh6DHVFyBWJLTRZ96FgdK/header.png)</center>
 
 # <center>${NUMBERING}</center>
@@ -12,7 +14,7 @@
 
 <table><tr><td>
 
-### [${PROJECT_1_TITLE}](${PROJECT_1_URL})
+### [${PROJECT_1_TITLE}](${PROJECT_1_URL}) (${PROJECT_1_CONTRIBUTIONS} Contributions)
 ${PROJECT_1_DESCRIPTION}
 
 [![${PROJECT_1_TITLE}](${PROJECT_1_IMAGE})](${PROJECT_1_URL})
@@ -21,14 +23,14 @@ ${PROJECT_1_DESCRIPTION}
 
 <table><tr><td>
 
-### [${PROJECT_2_TITLE}](${PROJECT_2_URL})
+### [${PROJECT_2_TITLE}](${PROJECT_2_URL}) (${PROJECT_3_CONTRIBUTIONS} Contributions)
 ${PROJECT_2_DESCRIPTION}
 
 [![${PROJECT_2_TITLE}](${PROJECT_2_IMAGE})](${PROJECT_2_URL})
 
 </td><td>
 
-### [${PROJECT_3_TITLE}](${PROJECT_3_URL})
+### [${PROJECT_3_TITLE}](${PROJECT_3_URL}) (${PROJECT_3_CONTRIBUTIONS} Contributions)
 ${PROJECT_3_DESCRIPTION}
 
 [![${PROJECT_3_TITLE}](${PROJECT_3_IMAGE})](${PROJECT_3_URL})
@@ -40,37 +42,33 @@ ${PROJECT_3_DESCRIPTION}
 
 <table><tr><td>
 
-**[@yabapmatt](https://utopian.io/utopian-io/@yabapmatt/curation-reward-estimation-tool)**
-**Curation Reward Estimation Tool**
-Enter the Curation Reward Estimation Tool!
+### [${NEWCOMER_1_TITLE}](${NEWCOMER_1_URL}) (${NEWCOMER_1_CONTRIBUTIONS} Contributions)
+${NEWCOMER_1_DESCRIPTION}
 
-[![bottracker.png](https://steemitimages.com/DQmbVFref6HwxjrXauxytH2pngzDT6fR1b6YwR61KiwXWBK/bottracker.png)](https://utopian.io/utopian-io/@yabapmatt/curation-reward-estimation-tool)
+[![${NEWCOMER_1_TITLE}](${NEWCOMER_1_IMAGE})](${NEWCOMER_1_URL})
 
 </td><td>
 
-**[@emrebeyler](https://utopian.io/utopian-io/@emrebeyler/a-welcome-bot-for-local-communities)**
-**Development of: Community Bot**
-A welcome bot for local communities
+### [${NEWCOMER_2_TITLE}](${NEWCOMER_2_URL}) (${NEWCOMER_2_CONTRIBUTIONS} Contributions)
+${NEWCOMER_2_DESCRIPTION}
 
-[![commbots.png](https://steemitimages.com/DQmVjpKLFHDBvdaTFYwnKJad9NGWwroShZPDYcWyUCJ3Q4L/commbots.png)](https://utopian.io/utopian-io/@emrebeyler/a-welcome-bot-for-local-communities)
+[![${NEWCOMER_2_TITLE}](${NEWCOMER_2_IMAGE})](${NEWCOMER_2_URL})
 
 </td></tr></table>
 
 <table><tr><td>
 
-**[@noisy](https://utopian.io/utopian-io/@noisy/steem-projects-community-driven-website-vs-moderation-how-to-achieve-scalability-without-worrying-about-quality-of-data)**
-**Steem Projects**
-How to achieve scalability without worrying about quality of data
+### [${NEWCOMER_3_TITLE}](${NEWCOMER_3_URL}) (${NEWCOMER_3_CONTRIBUTIONS} Contributions)
+${NEWCOMER_3_DESCRIPTION}
 
-[![noisy.png](https://steemitimages.com/DQmbTie3Yq8RbCXqF2q4iGeg1XzHb8gr9JGwYeeu5dNn78H/noisy.png)](https://utopian.io/utopian-io/@noisy/steem-projects-community-driven-website-vs-moderation-how-to-achieve-scalability-without-worrying-about-quality-of-data)
+[![${NEWCOMER_3_TITLE}](${NEWCOMER_3_IMAGE})](${NEWCOMER_3_URL})
 
 </td><td>
 
-**[@samrg472](https://utopian.io/utopian-io/@samrg472/steem-dunk-the-special-surprise-has-arrived-we-will-now-vote-on-your-content)**
-**Steem Dunk**
-The Special Surprise has Arrived: We will now Vote on Your Content
+### [${NEWCOMER_4_TITLE}](${NEWCOMER_4_URL}) (${NEWCOMER_4_CONTRIBUTIONS} Contributions)
+${NEWCOMER_4_DESCRIPTION}
 
-[![steemdunk.png](https://steemitimages.com/DQmbUVKGQZWKChue5fg51Lpdb3HbQ85cQUV7GqfFg33XbPX/steemdunk.png)](https://utopian.io/utopian-io/@samrg472/steem-dunk-the-special-surprise-has-arrived-we-will-now-vote-on-your-content)
+[![${NEWCOMER_4_TITLE}](${NEWCOMER_4_IMAGE})](${NEWCOMER_4_URL})
 
 
 </td></tr></table>
@@ -78,154 +76,42 @@ The Special Surprise has Arrived: We will now Vote on Your Content
 # <center>Top 10 Contributions</center>
 #
 
-1. **[Utopian Bot Update: Major changes](https://utopian.io/utopian-io/@stoodkev/utopian-bot-update-major-changes)**
-<sup>by [@stoodkev](https://utopian.io/@stoodkev)</sup>
+1. [${CONTRIBUTION_1_TITLE}](${CONTRIBUTION_1_URL}) (${CONTRIBUTION_1_REWARD} SBD)
+by [${CONTRIBUTION_1_USER}](https://utopian.io/@${CONTRIBUTION_1_USER})
 
-2. **[Adding some margin codes to make the alignment better. and make the looks finer in the eyes of the viewer.](https://utopian.io/utopian-io/@ruah/adding-some-margin-codes-to-make-the-alignment-better-and-make-the-looks-finer-in-the-eyes-of-the-viewer)**
-<sup>by [@ruah](https://utopian.io/@ruah)</sup>
+2. [${CONTRIBUTION_2_TITLE}](${CONTRIBUTION_2_URL}) (${CONTRIBUTION_2_REWARD} SBD)
+by [${CONTRIBUTION_2_USER}](https://utopian.io/@${CONTRIBUTION_2_USER})
 
-3. **[Steem Dunk is now Open Source - Automated Curation Platform - Hosted version is FREE for EVERYONE](https://utopian.io/utopian-io/@samrg472/steem-dunk-is-now-open-source-automated-curation-platform-hosted-version-is-free-for-everyone)**
-<sup>by [@samrg472](https://utopian.io/@samrg472)</sup>
+3. [${CONTRIBUTION_3_TITLE}](${CONTRIBUTION_3_URL}) (${CONTRIBUTION_3_REWARD} SBD)
+by [${CONTRIBUTION_3_USER}](https://utopian.io/@${CONTRIBUTION_3_USER})
 
-4. **[Sub-Project | OhSteem: A Logic Game (Design/Github/Roadmap)](https://utopian.io/utopian-io/@deveerei/sub-project-or-ohsteem-a-logic-game-design-github-roadmap)**
-<sup>by [@deveerei](https://utopian.io/@deveerei)</sup>
+4. [${CONTRIBUTION_4_TITLE}](${CONTRIBUTION_4_URL}) (${CONTRIBUTION_4_REWARD} SBD)
+by [${CONTRIBUTION_4_USER}](https://utopian.io/@${CONTRIBUTION_4_USER})
 
-5. **[Charity revolutionized - Earn reward SMT Token by Donating](https://utopian.io/utopian-io/@tarekadam/charity-revolutionized-earn-reward-smt-token-by-donating)**
-<sup>by [@tarekadam](https://utopian.io/@tarekadam)</sup>
+5. [${CONTRIBUTION_5_TITLE}](${CONTRIBUTION_5_URL}) (${CONTRIBUTION_5_REWARD} SBD)
+by [${CONTRIBUTION_5_USER}](https://utopian.io/@${CONTRIBUTION_5_USER})
 
-6. **[Steem Bot Tracker Update 5 - Pre-Vote Group Info & Bid Validation](https://utopian.io/utopian-io/@yabapmatt/steem-bot-tracker-update-5-pre-vote-group-info-and-bid-validation)**
-<sup>by [@yabapmatt](https://utopian.io/@yabapmatt)</sup>
+6. [${CONTRIBUTION_6_TITLE}](${CONTRIBUTION_6_URL}) (${CONTRIBUTION_6_REWARD} SBD)
+by [${CONTRIBUTION_6_USER}](https://utopian.io/@${CONTRIBUTION_6_USER})
 
-7. **[Added text search ordered by relevance score for Utopian](https://utopian.io/utopian-io/@sirrius/added-text-search-ordered-by-weights-for-utopian)**
-<sup>by [@sirrius](https://utopian.io/@sirrius)</sup>
+7. [${CONTRIBUTION_7_TITLE}](${CONTRIBUTION_7_URL}) (${CONTRIBUTION_7_REWARD} SBD)
+by [${CONTRIBUTION_7_USER}](https://utopian.io/@${CONTRIBUTION_7_USER})
 
-8. **[Design of the authorize page and add revoke tokens](https://utopian.io/utopian-io/@gregory.latinier/design-of-the-authorize-page-and-add-revoke-tokens)**
-<sup>by [@gregory.latinier](https://utopian.io/@gregory.latinier)</sup>
+8. [${CONTRIBUTION_8_TITLE}](${CONTRIBUTION_8_URL}) (${CONTRIBUTION_8_REWARD} SBD)
+by [${CONTRIBUTION_8_USER}](https://utopian.io/@${CONTRIBUTION_8_USER})
 
-9. **[Updating Icons in Github - Multiple Sizes - OhSteem](https://utopian.io/utopian-io/@deveerei/updating-icons-in-github-multiple-sizes-ohsteem)**
-<sup>by [@deveerei](https://utopian.io/@deveerei)</sup>
+9. [${CONTRIBUTION_9_TITLE}](${CONTRIBUTION_9_URL}) (${CONTRIBUTION_9_REWARD} SBD)
+by [${CONTRIBUTION_9_USER}](https://utopian.io/@${CONTRIBUTION_9_USER})
 
-10. **[Save Drafts to Store](https://utopian.io/utopian-io/@eastmael/save-drafts-to-store)**
-<sup>by [@eastmael](https://utopian.io/@eastmael)</sup>
+10. [${CONTRIBUTION_10_TITLE}](${CONTRIBUTION_10_URL}) (${CONTRIBUTION_10_REWARD} SBD)
+by [${CONTRIBUTION_10_USER}](https://utopian.io/@${CONTRIBUTION_10_USER})
 
 <hr />
 
-
 ### A Special Thanks to The Sponsors
 
-<table><tr><td>
-
-
-@freedom
-@misterdelegation
-@ned
-@transisto
-@wackou
-@xeldal (<a href="https://steemit.com/~witnesses">Vote for witness</a>)
-@lafona-miner
-@steempty
-@good-karma (<a href="https://steemit.com/~witnesses">Vote for witness</a>)
-@thecryptodrive (<a href="https://steemit.com/~witnesses">Vote for witness</a>)
-@furion (<a href="https://steemit.com/~witnesses">Vote for witness</a>)
-@cnts
-@javybar
-@minnowbooster
-@netuoso (<a href="https://steemit.com/~witnesses">Vote for witness</a>)
-@tarekadam
-@jerrybanfield (<a href="https://steemit.com/~witnesses">Vote for witness</a>)
-@billbutler
-@ajvest
-@elear
-@masterthematrix
-@materia
-@yabapmatt (<a href="https://steemit.com/~witnesses">Vote for witness</a>)
-@delegate.lafona (<a href="https://steemit.com/~witnesses">Vote for witness</a>)
-@agoric.systems (<a href="https://steemit.com/~witnesses">Vote for witness</a>)
-@flauwy
-@teamsteem (<a href="https://steemit.com/~witnesses">Vote for witness</a>)
-@deanliu
-@lexiconical
-@masterofcoin
-@cmorton
-@johnsmith
-@jerzy
-@dragosroua (<a href="https://steemit.com/~witnesses">Vote for witness</a>)
-@unosuke
-@gokulnk
-@o1o1o1o
-@techslut
-
-</td><td>
-
-@jenkinrocket
-@mother2chicks
-@rival (<a href="https://steemit.com/~witnesses">Vote for witness</a>)
-@jomeszaros
-@steemj
-@oendertuerk
-@sircork (<a href="https://steemit.com/~witnesses">Vote for witness</a>)
-@shreyasgune
-@lykkejay
-@hadimemories
-@kemal13
-@soushi888
-@dodybireuen
-@ragepeanut
-@jatinhota (<a href="https://steemit.com/~witnesses">Vote for witness</a>)
-@xplosive
-@littleboy
-@eastmael
-@dimitrisp (<a href="https://steemit.com/~witnesses">Vote for witness</a>)
-@koinbot
-@katamori
-@eliel
-@evildido
-@alexsm
-@allowisticartist
-@doodlebear
-@dubem-eu
-@fakire1sadaka
-@steemfunding
-@lusanamaya
-@knowledges
-@callmetoxy
-@nehomar
-@rizal.konoha2
-@tanvirrahman
-@yandot
-@bluetechno
-@ilvstranger
-@raserrano
-@robin-ho
-
-</td></tr></table>
+${SPONSORS}
 
 #### A Special Thanks to The Moderators
 
-@espoem
-@jefpatat
-@arie.steem
-@ruah
-@themanualbot
-@stoodkev
-@favcau
-@deveerei
-@mcfarhat
-@mooncryption
-@cnts
-@shreyasgune
-@knowledges
-@zeartul
-@lykkejay
-
-
-<center>
-
-<hr/>
-
-![author-dontstopmenow.png](https://steemitimages.com/DQmSTN83gCc6CSHgAhNcME3CWWHxb6CpkXW9HAkNurXpdCq/author-dontstopmenow.png)
-
-### Author Bio
-I am @dontstopmenow, a crypto enthusiast and Blockchain lover.
-Worldwide traveler who wants to make the world a better place. Steemit curator and Chef with international experience.
-</center>
+${MODERATORS}

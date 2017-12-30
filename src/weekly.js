@@ -3,6 +3,7 @@ const nodemailer = require('nodemailer');
 const request = require('request');
 const fs = require('fs');
 const steem = require('steem');
+const twig = require('twig');
 const config = require('../config');
 
 // date settings
@@ -32,7 +33,7 @@ let getData = new Promise((yes, no) => {
 });
 
 getData.then((projects) => {
-  data.projects = projects
+  data.projects = JSON.parse(projects)
   request(newcomersUrl, (err, response, body) => {
     if (err) console.log(err);
     return body;
@@ -40,7 +41,7 @@ getData.then((projects) => {
 });
 
 getData.then((newcomers) => {
-  data.newcomers = newcomers
+  data.newcomers = JSON.parse(newcomers)
   request(contributionsUrl, (err, response, body) => {
     if (err) console.log(err);
     return body;
@@ -48,7 +49,7 @@ getData.then((newcomers) => {
 });
 
 getData.then((contributions) => {
-  data.contributions = contributions
+  data.contributions = JSON.parse(contributions)
 
   // create reusable transporter object using the default SMTP transport
   let mailer = nodemailer.createTransport({
@@ -67,24 +68,26 @@ getData.then((contributions) => {
       throw err;
     }
 
-    const template = generateAndSaveTemplate('html', rawTemplate, '1/2018', projects, contributions);
+    const template = generateAndSaveTemplate('html', rawTemplate, '1/2018', data);
 
-    // mail setup
-    const mailOptions = {
-      from: config.mail.from,
-      to: config.mail.testRecipient,
-      subject: 'Utopian Weekly',
-      text: 'Utopian Weekly',
-      html: template
-    };
+    if (!config.generateOnly) {
+      // mail setup
+      const mailOptions = {
+        from: config.mail.from,
+        to: config.mail.testRecipient,
+        subject: 'Utopian Weekly',
+        text: 'Utopian Weekly',
+        html: template
+      };
 
-    // send mail
-    mailer.sendMail(mailOptions, (error, info) => {
-      if (error) {
+      // send mail
+      mailer.sendMail(mailOptions, (error, info) => {
+        if (error) {
           return console.log(error);
-      }
-      console.log('Message sent: %s', info.messageId);
-    });
+        }
+        console.log('Message sent: %s', info.messageId);
+      });
+    }
   });
 
   // read markdown template
@@ -93,30 +96,32 @@ getData.then((contributions) => {
         throw err;
     }
 
-    const template = generateAndSaveTemplate('md', rawTemplate, '1/2018', projects, contributions);
+    const template = generateAndSaveTemplate('md', rawTemplate, '1/2018', data);
 
     // post on steemit.com
-    var permlink = new Date().toISOString().replace(/[^a-zA-Z0-9]+/g, '').toLowerCase();
+    if (!config.generateOnly) {
+      var permlink = new Date().toISOString().replace(/[^a-zA-Z0-9]+/g, '').toLowerCase();
 
-    steem.broadcast.comment(
-      config.wif,
-      'mkt', // Parent Author
-      'steemline-beta-typescript-and-steemconnect-integration-maintainer-wanted-50-steem', // Parent Permlink
-      'guest123', // Author
-      permlink, // Permlink
-      'Utopian Weekly', // Title
-      template, // Body,
-      {tags: ['test'], app: 'steemjs/utopianweekly'}, // Json Metadata
-      (err, result) => {
-          console.log(err, result);
-      }
-    );
+      steem.broadcast.comment(
+        config.wif,
+        'mkt', // Parent Author
+        'steemline-beta-typescript-and-steemconnect-integration-maintainer-wanted-50-steem', // Parent Permlink
+        'guest123', // Author
+        permlink, // Permlink
+        'Utopian Weekly', // Title
+        template, // Body,
+        {tags: ['test'], app: 'steemjs/utopianweekly'}, // Json Metadata
+        (err, result) => {
+            console.log(err, result);
+        }
+      );
+    }
   });
 });
 
 // fill template with data and save static file
-function generateAndSaveTemplate(ext, content, number, projects, contributions) {
-  // replace placeholders
+function generateAndSaveTemplate(ext, content, number, data) {
+  // insert number
   content = content.replace('${NUMBERING}', number);
 
   // save file
