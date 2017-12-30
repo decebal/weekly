@@ -9,6 +9,7 @@ var config = {
   mail: {
     from: 'Utopian.io <weekly@utopian.io>',
     testRecipient: 'test@example.org'
-  }
+  },
+  generateOnly: true
 }
 module.exports = config
