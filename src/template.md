@@ -108,14 +108,12 @@ by [${CONTRIBUTION_10_USER}](https://utopian.io/@${CONTRIBUTION_10_USER})
 
 ### A Special Thanks to The Sponsors
 
-{% for moderator in data.moderatos %}
+{% for moderator in data.moderators %}
 @{{ moderator }}
 {% if not loop.last %}, {% endif %}
 {% endfor %}
 
 #### A Special Thanks to The Moderators
-
-${MODERATORS}
 
 {% for sponsor in data.sponsors %}
 @{{ sponsor }}
