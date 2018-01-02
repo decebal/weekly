@@ -5,7 +5,12 @@ const fs = require('fs');
 const steem = require('steem');
 const twig = require('twig');
 const moment = require('moment');
+const truncate = require('truncate');
 const config = require('../config');
+
+twig.extendFilter("truncate", (value, length) => {
+    return truncate(value, length);
+});
 
 // API endpoints
 const projectsUrl = config.apiUrl + '/api/posts/top?limit=3&start_date=' + moment().add(-7, 'days').format('YYYY-MM-DD') + '&end_date=' + moment().format('YYYY-MM-DD');
@@ -63,6 +68,7 @@ getData.then((contributions) => {
     data.moderators = moderators;
     getSponsors().then((sponsors) => {
       data.sponsors = sponsors;
+
       // read html template
       twig.renderFile('./src/template.html', {data}, (err, template) => {
         if (err) {
@@ -127,7 +133,7 @@ getData.then((contributions) => {
 // fill template with data and save static file
 function saveTemplate(template, ext) {
   // save file
-  let filename = './static/archive/utopian-weekly-' + startDate + '-' + endDate + '.' + ext;
+  let filename = './static/archive/utopian-weekly-' + moment().add(-7, 'days').format('YYYY-MM-DD') + '-' + moment().format('YYYY-MM-DD') + '.' + ext;
   fs.writeFile(filename, template, function(err) {
     if (err) {
         return console.log(err);
