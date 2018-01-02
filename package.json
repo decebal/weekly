@@ -15,6 +15,7 @@
     "nodemailer": "^4.4.1",
     "request": "^2.83.0",
     "steem": "^0.6.7",
+    "truncate": "^2.0.0",
     "twig": "^1.10.5",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
