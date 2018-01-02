@@ -24,7 +24,9 @@ let data = {
   numbering: moment().week() + '/' + moment().year(),
   projects: null,
   newcomers: null,
-  contributions: null
+  contributions: null,
+  moderators: null,
+  sponsors: null
 };
 
 let getData = new Promise((yes, no) => {
@@ -65,7 +67,9 @@ getData.then((contributions) => {
   });
 
   getModerators().then((moderators) => {
+    data.moderators = moderators;
     getSponsors().then((sponsors) => {
+      data.sponsors = sponsors;
       // read html template
       twig.renderFile('./src/template.html', {data}, (err, template) => {
         if (err) {
