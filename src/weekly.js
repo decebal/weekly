@@ -17,7 +17,9 @@ let data = {
   numbering: moment().week() + '/' + moment().year(),
   projects: null,
   newcomers: null,
-  contributions: null
+  contributions: null,
+  moderators: null,
+  sponsors: null
 };
 
 let getData = new Promise((yes, no) => {
@@ -57,62 +59,68 @@ getData.then((contributions) => {
     }
   });
 
-  // read html template
-  twig.renderFile('./src/template.html', {data}, (err, template) => {
-    if (err) {
-      throw err;
-    }
-
-    // save template
-    saveTemplate(template, 'html');
-
-    if (!config.generateOnly) {
-      // mail setup
-      const mailOptions = {
-        from: config.mail.from,
-        to: config.mail.testRecipient,
-        subject: 'Utopian Weekly',
-        text: 'Utopian Weekly',
-        html: template
-      };
-
-      // send mail
-      mailer.sendMail(mailOptions, (error, info) => {
-        if (error) {
-          return console.log(error);
+  getModerators().then((moderators) => {
+    data.moderators = moderators;
+    getSponsors().then((sponsors) => {
+      data.sponsors = sponsors;
+      // read html template
+      twig.renderFile('./src/template.html', {data}, (err, template) => {
+        if (err) {
+          throw err;
         }
-        console.log('Message sent: %s', info.messageId);
+
+        // save template
+        saveTemplate(template, 'html');
+
+        if (!config.generateOnly) {
+          // mail setup
+          const mailOptions = {
+            from: config.mail.from,
+            to: config.mail.testRecipient,
+            subject: 'Utopian Weekly',
+            text: 'Utopian Weekly',
+            html: template
+          };
+
+          // send mail
+          mailer.sendMail(mailOptions, (error, info) => {
+            if (error) {
+              return console.log(error);
+            }
+            console.log('Message sent: %s', info.messageId);
+          });
+        }
       });
-    }
-  });
 
-  // read markdown template
-  twig.renderFile('./src/template.md', {data}, (err, template) => {
-    if (err) {
-        throw err;
-    }
-
-    // save template
-    saveTemplate(template, 'md');
-
-    // post on steemit.com
-    if (!config.generateOnly) {
-      let permlink = 'utopian-weekly-' + data.numbering.replace('/', '-');
-
-      steem.broadcast.comment(
-        config.wif,
-        '', // Parent Author
-        '', // Parent Permlink
-        'guest123', // Author
-        permlink, // Permlink
-        'Utopian Weekly - ' + data.numbering, // Title
-        template, // Body,
-        {tags: ['test'], app: 'steemjs/utopianweekly'}, // Json Metadata
-        (err, result) => {
-            console.log(err, result);
+      // read markdown template
+      twig.renderFile('./src/template.md', {data}, (err, template) => {
+        if (err) {
+          throw err;
         }
-      );
-    }
+
+        // save template
+        saveTemplate(template, 'md');
+
+        // post on steemit.com
+        if (!config.generateOnly) {
+          let permlink = 'utopian-weekly-' + data.numbering.replace('/', '-');
+
+          steem.broadcast.comment(
+            config.wif,
+            '', // Parent Author
+            '', // Parent Permlink
+            'guest123', // Author
+            permlink, // Permlink
+            'Utopian Weekly - ' + data.numbering, // Title
+            template, // Body,
+            {tags: ['test'], app: 'steemjs/utopianweekly'}, // Json Metadata
+            (err, result) => {
+              console.log(err, result);
+            }
+          );
+        }
+      });
+    });
   });
 });
 
@@ -127,7 +135,6 @@ function saveTemplate(template, ext) {
     console.log('Template saved! (' + filename + ')');
   });
 }
-
 
 function getModerators() {
     return new Promise((yes, no) => {
