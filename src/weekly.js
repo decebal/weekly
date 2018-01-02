@@ -4,6 +4,7 @@ const request = require('request');
 const fs = require('fs');
 const steem = require('steem');
 const twig = require('twig');
+const moment = require('moment');
 const config = require('../config');
 
 // date settings
@@ -20,7 +21,7 @@ const contributionsUrl = config.apiUrl + '/api/posts/top?limit=3&start_date=' + 
 
 // get utopian projects/contributions
 let data = {
-  numbering: '1/2018',
+  numbering: moment().week() + '/' + moment().year(),
   projects: null,
   newcomers: null,
   contributions: null
@@ -103,15 +104,15 @@ getData.then((contributions) => {
 
     // post on steemit.com
     if (!config.generateOnly) {
-      let permlink = new Date().toISOString().replace(/[^a-zA-Z0-9]+/g, '').toLowerCase();
+      let permlink = 'utopian-weekly-' + data.numbering.replace('/', '-');
 
       steem.broadcast.comment(
         config.wif,
-        'mkt', // Parent Author
-        'steemline-beta-typescript-and-steemconnect-integration-maintainer-wanted-50-steem', // Parent Permlink
+        '', // Parent Author
+        '', // Parent Permlink
         'guest123', // Author
         permlink, // Permlink
-        'Utopian Weekly', // Title
+        'Utopian Weekly - ' + data.numbering, // Title
         template, // Body,
         {tags: ['test'], app: 'steemjs/utopianweekly'}, // Json Metadata
         (err, result) => {
