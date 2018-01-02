@@ -7,17 +7,10 @@ const twig = require('twig');
 const moment = require('moment');
 const config = require('../config');
 
-// date settings
-let startDate = new Date();
-startDate.setDate(startDate.getDate() - 7); // one week ago
-startDate = startDate.getFullYear() + '-' + startDate.getMonth() + '-' + startDate.getDate();
-let endDate = new Date();
-endDate = endDate.getFullYear() + '-' + endDate.getMonth() + '-' + endDate.getDate();
-
 // API endpoints
-const projectsUrl = config.apiUrl + '/api/posts/top?limit=3&start_date=' + startDate + '&end_date=' + endDate;
-const newcomersUrl = config.apiUrl + '/api/posts/top?limit=3&start_date=' + startDate + '&end_date=' + endDate + '&only_new=true';
-const contributionsUrl = config.apiUrl + '/api/posts/top?limit=3&start_date=' + startDate + '&end_date=' + endDate + '&retrieve_by=contributions';
+const projectsUrl = config.apiUrl + '/api/posts/top?limit=3&start_date=' + moment().add(-7, 'days').format('YYYY-MM-DD') + '&end_date=' + moment().format('YYYY-MM-DD');
+const newcomersUrl = config.apiUrl + '/api/posts/top?limit=4&start_date=' + moment().add(-7, 'days').format('YYYY-MM-DD') + '&end_date=' + moment().format('YYYY-MM-DD') + '&only_new=true';
+const contributionsUrl = config.apiUrl + '/api/posts/top?limit=10&start_date=' + moment().add(-7, 'days').format('YYYY-MM-DD') + '&end_date=' + moment().format('YYYY-MM-DD') + '&retrieve_by=contributions';
 
 // get utopian projects/contributions
 let data = {
