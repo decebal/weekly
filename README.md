@@ -1,8 +1,17 @@
-# utopian-weekly-vuejs
+# Utopian Weekly
 
 > The automated Utopian Weekly newsletter
 
-## Build Setup
+```
+clone https://github.com/utopian-io/utopian-weekly.git
+cd utopian-weekly
+npm install
+cp config.dist.js config.js
+vim config.js # edit config parameters
+node src/weekly
+```
+
+## Build Setup (for the frontend that has still to be built)
 
 ``` bash
 # install dependencies
