@@ -72,8 +72,6 @@ Promise.all([p1, p2, p3, p4, p5])
   data.moderators = JSON.parse(values[3]).results;
   data.sponsors = JSON.parse(values[4]).results;
 
-  console.log(data.contributions);
-
   // create reusable transporter object using the default SMTP transport
   let mailer = nodemailer.createTransport({
     host: config.smtp.host,
