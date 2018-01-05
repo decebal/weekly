@@ -10,30 +10,31 @@
 
 # <center>Top Projects</center>
 
-<table><tr><td>
-
 ### [{{ data.projects[0].github.name }}]({{ data.projects[0].project_url }}) ({{ data.projects[0].count }} Contributions)
 {{ data.projects[0].github.description }}
 
 [![{{ data.projects[0].github.name }}](https://res.cloudinary.com/hpiynhbhq/image/upload/v1510150908/xx4shp2yiekby5d6sify.png)]({{ data.projects[0].project_url }})
 
-</td></tr></table>
-
-<table><tr><td>
+<table>
+<tr>
+<td>
 
 ### [{{ data.projects[1].github.name }}]({{ data.projects[1].project_url }}) ({{ data.projects[1].count }} Contributions)
 {{ data.projects[1].github.description }}
 
 [![{{ data.projects[1].github.name }}](https://res.cloudinary.com/hpiynhbhq/image/upload/v1510150908/xx4shp2yiekby5d6sify.png)]({{ data.projects[1].project_url }})
 
-</td><td>
+</td>
+<td>
 
 ### [{{ data.projects[2].github.name }}]({{ data.projects[2].project_url }}) ({{ data.projects[2].count }} Contributions)
 {{ data.projects[2].github.description }}
 
 [![{{ data.projects[2].github.name }}](https://res.cloudinary.com/hpiynhbhq/image/upload/v1510150908/xx4shp2yiekby5d6sify.png)]({{ data.projects[2].project_url }})
 
-</td></tr></table>
+</td>
+</tr>
+</table>
 
 # <center>Top Newcomers</center>
 #
