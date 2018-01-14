@@ -30,6 +30,12 @@ npm run build --report
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
 
+## Generate Post Template
+``` bash
+# generate new post template with 5 random sponsors and moderators
+node src/postTemplate 5
+```
+
 # TODO
 
 - implement mail subscribers

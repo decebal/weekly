@@ -11,12 +11,15 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "colors": "^1.1.2",
     "moment": "^2.20.1",
     "nodemailer": "^4.4.1",
     "request": "^2.83.0",
+    "shuffle-array": "^1.0.1",
     "steem": "^0.6.7",
     "truncate": "^2.0.0",
     "twig": "^1.10.5",
+    "utopian-api": "^0.3.2",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
   },
