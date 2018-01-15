@@ -32,8 +32,9 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 ## Generate Post Template
 ``` bash
-# generate new post template with 5 random sponsors and moderators
-node src/postTemplate 5
+# Run:
+node src/postTemplate
+# Output will be saved to ./static/archive/postTemplate.md
 ```
 
 # TODO
