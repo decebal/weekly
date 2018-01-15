@@ -1,29 +1,27 @@
 let utopian = require("utopian-api");
 let colors = require('colors');
-let shuffle = require('shuffle-array');
 let fs = require("fs");
 
-let node = process.argv[0].split("\\")[process.argv[0].split("\\").length - 1];
-let script = process.argv[1].split("\\")[process.argv[1].split("\\").length - 1];
-let arguments = process.argv.slice(2);
-
-if (arguments.length !== 1) {
-  console.log("Missing number of accounts to include in the table.".red);
-  console.log("Usage: ".red + node.green + " " + script.yellow + " 5-20".cyan)
-} else {
-  Promise.all([
-    utopian.getSponsors(),
-    utopian.getModerators()
-  ]).then((result) => {
-    let sponsorTable = buildTable("sponsor", shuffle(result[0].results).slice(0,parseInt(arguments[0])));
-    let modTable = buildTable("moderator", shuffle(result[1].results).slice(0,parseInt(arguments[0])));
-    let template = fs.readFileSync("./static/postTemplate.md").toString();
-    template = template.replace("%sponsors%", sponsorTable);
-    template = template.replace("%moderators%", modTable);
-    fs.writeFileSync("./static/archive/postTemplate.md", template);
-    console.log("Template saved to: ".green + "./static/archive/postTemplate.md")
-  });
+function sortByKey(array, key, limit) {
+  return array.sort(function (a, b) {
+    let x = a[key];
+    let y = b[key];
+    return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+  }).reverse().slice(0, limit);
 }
+
+Promise.all([
+  utopian.getSponsors(),
+  utopian.getModerators()
+]).then((result) => {
+  let sponsorTable = buildTable("sponsor", sortByKey(result[0].results,'vesting_shares',6));
+  let modTable = buildTable("moderator", sortByKey(result[1].results,'total_paid_rewards_steem',6));
+  let template = fs.readFileSync("./static/postTemplate.md").toString();
+  template = template.replace("%sponsors%", sponsorTable);
+  template = template.replace("%moderators%", modTable);
+  fs.writeFileSync("./static/archive/postTemplate.md", template);
+  console.log("Template saved to: ".green + "./static/archive/postTemplate.md")
+});
 
 
 function getModeratorRow(moderator) {
