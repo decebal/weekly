@@ -65,19 +65,19 @@ utils.publishWeekly = (html, markdown, subject, permlink) => {
   })
 
   // post on steem
-  // steem.broadcast.comment(
-  //   config.wif,
-  //   '', // Parent Author
-  //   '', // Parent Permlink
-  //   'guest123', // Author
-  //   permlink, // Permlink
-  //   subject, // Title
-  //   markdown, // Body,
-  //   {tags: ['test'], app: 'steemjs/utopianweekly'}, // Json Metadata
-  //   (err, result) => {
-  //     console.log(err, result);
-  //   }
-  // );
+  steem.broadcast.comment(
+    config.wif,
+    '', // Parent Author
+    '', // Parent Permlink
+    config.account, // Author
+    permlink, // Permlink
+    subject, // Title
+    markdown, // Body,
+    {tags: config.tags, app: 'steemjs/utopianweekly'}, // Json Metadata
+    (err, result) => {
+      console.log(err, result);
+    }
+  );
 }
 
 module.exports = utils

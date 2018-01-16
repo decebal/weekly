@@ -1,6 +1,8 @@
-var config = {
+const config = {
   apiUrl: 'https://api.utopian.io',
+  account: 'guest123',
   wif: 'posting-key-for-steem-account',
+  tags: ['utopian-io', 'utopian-weekly', 'opensource'],
   smtp: {
     host: 'host.tld',
     user: 'user',
