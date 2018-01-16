@@ -102,7 +102,7 @@ if (options['generate'] || options['generate-and-send']) {
         utils.saveTemplate(templates[1], 'md');
 
         if (options['generate-and-send']) {
-          utils.publishWeekly(templates[0], templates[1], 'Utopian Weekly - ' + data.numbering, 'utopian-weekly-' + data.numbering.replace('/', '-'))
+          // utils.publishWeekly(templates[0], templates[1], 'Utopian Weekly - ' + data.numbering, 'utopian-weekly-' + data.numbering.replace('/', '-'))
         }
       }).catch((err) => {
         console.log(err);
@@ -118,7 +118,7 @@ if (options['send-generated'] && !options['generate'] && !options['generate-and-
     readGeneratedHtml,
     readGeneratedMarkdown
   ]).then((templates) => {
-    utils.publishWeekly(templates[0], templates[1], 'Utopian Weekly - ' + data.numbering, 'utopian-weekly-' + data.numbering.replace('/', '-'))
+    // utils.publishWeekly(templates[0], templates[1], 'Utopian Weekly - ' + data.numbering, 'utopian-weekly-' + data.numbering.replace('/', '-'))
   }).catch((err) => {
     console.log(err);
   })
