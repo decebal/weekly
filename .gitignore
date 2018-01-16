@@ -5,7 +5,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 config.js
-/static/archive/utopian-weekly-*
+/static/archive/
+!/static/archive/.gitkeep
 
 # Editor directories and files
 .idea
