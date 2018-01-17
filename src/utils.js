@@ -80,4 +80,12 @@ utils.publishWeekly = (html, markdown, subject, permlink) => {
   );
 }
 
+utils.sortByKey = (array, key, limit) => {
+  return array.sort(function (a, b) {
+    let x = a[key];
+    let y = b[key];
+    return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+  }).reverse().slice(0, limit);
+}
+
 module.exports = utils
