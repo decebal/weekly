@@ -15,7 +15,7 @@ const config = require('../config');
 const defaults = [
   { name: 'generate', type: Boolean, defaultValue: false },
   { name: 'generate-and-send', type: Boolean, defaultValue: false },
-  { name: 'send-generated', type: String, defaultValue: false }
+  { name: 'send', type: String, defaultValue: false }
 ];
 const options = args(defaults);
 
@@ -57,7 +57,7 @@ let getContributions = new Promise((yes, no) => {
 });
 
 let readGeneratedHtml = new Promise((resolve, reject) => {
-  fs.readFile(options['send-generated'] + '.html', (err, template) => {
+  fs.readFile(options['send'] + '.html', (err, template) => {
     if (err) {
       reject(err)
     }
@@ -66,7 +66,7 @@ let readGeneratedHtml = new Promise((resolve, reject) => {
 })
 
 let readGeneratedMarkdown = new Promise((resolve, reject) => {
-  fs.readFile(options['send-generated'] + '.md', (err, template) => {
+  fs.readFile(options['send'] + '.md', (err, template) => {
     if (err) {
       reject(err)
     }
@@ -113,7 +113,7 @@ if (options['generate'] || options['generate-and-send']) {
 }
 
 // Send previouisly generated
-if (options['send-generated'] && !options['generate'] && !options['generate-and-send']) {
+if (options['send'] && !options['generate'] && !options['generate-and-send']) {
   Promise.all([
     readGeneratedHtml,
     readGeneratedMarkdown

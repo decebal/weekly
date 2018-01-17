@@ -8,8 +8,19 @@ cd utopian-weekly
 npm install
 cp config.dist.js config.js
 vim config.js # edit config parameters
-node src/weekly
 ```
+
+Generate templates to `static/archive/utopian-weekly-yyyy-mm-dd.(html|md)`:
+
+`node src/weekly --generate`
+
+Generate templates to `static/archive/utopian-weekly-yyyy-mm-dd.(html|md)`, send email newsletter and publish post:
+
+`node src/weekly --generate-and-send`
+
+Send email newsletter and publish post based on generated templates:
+
+`node src/weekly --send-generated static/archive/utopian-weekly-yyyy-mm-dd`
 
 ## Build Setup (for the frontend that has still to be built)
 
