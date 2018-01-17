@@ -34,48 +34,30 @@ let data = {
   sponsors: null
 };
 
-// Data promises
-let getProjects = new Promise((yes, no) => {
-  request(projectsUrl, (err, response, body) => {
-    if (err) no(err);
-    yes(body);
-  });
-})
-
-let getNewcomers = new Promise((yes, no) => {
-  request(newcomersUrl, (err, response, body) => {
-    if (err) no(err);
-    yes(body);
-  });
-});
-
-let getContributions = new Promise((yes, no) => {
-  request(contributionsUrl, (err, response, body) => {
-    if (err) no(err);
-    yes(body);
-  });
-});
-
-let readGeneratedHtml = new Promise((resolve, reject) => {
-  fs.readFile(options['send'] + '.html', (err, template) => {
-    if (err) {
-      reject(err)
-    }
-    resolve(template)
-  })
-})
-
-let readGeneratedMarkdown = new Promise((resolve, reject) => {
-  fs.readFile(options['send'] + '.md', (err, template) => {
-    if (err) {
-      reject(err)
-    }
-    resolve(template)
-  })
-})
-
 // Generate (and send)
 if (options['generate'] || options['generate-and-send']) {
+  // Data promises
+  let getProjects = new Promise((yes, no) => {
+    request(projectsUrl, (err, response, body) => {
+      if (err) no(err);
+      yes(body);
+    });
+  })
+
+  let getNewcomers = new Promise((yes, no) => {
+    request(newcomersUrl, (err, response, body) => {
+      if (err) no(err);
+      yes(body);
+    });
+  });
+
+  let getContributions = new Promise((yes, no) => {
+    request(contributionsUrl, (err, response, body) => {
+      if (err) no(err);
+      yes(body);
+    });
+  });
+
   Promise.all([
     // load data
     getProjects,
@@ -88,9 +70,8 @@ if (options['generate'] || options['generate-and-send']) {
       data.projects = JSON.parse(values[0]);
       data.newcomers = JSON.parse(values[1]);
       data.contributions = JSON.parse(values[2]);
-      data.moderators = values[3].results;
-      data.sponsors = values[4].results;
-
+      data.moderators = utils.sortByKey(values[3].results, 'total_paid_rewards_steem', 6);
+      data.sponsors = utils.sortByKey(values[4].results, 'vesting_shares', 6);
 
       Promise.all([
         // generate templates with data
@@ -114,6 +95,24 @@ if (options['generate'] || options['generate-and-send']) {
 
 // Send previouisly generated
 if (options['send'] && !options['generate'] && !options['generate-and-send']) {
+  let readGeneratedHtml = new Promise((resolve, reject) => {
+    fs.readFile(options['send'] + '.html', (err, template) => {
+      if (err) {
+        reject(err)
+      }
+      resolve(template)
+    })
+  })
+
+  let readGeneratedMarkdown = new Promise((resolve, reject) => {
+    fs.readFile(options['send'] + '.md', (err, template) => {
+      if (err) {
+        reject(err)
+      }
+      resolve(template)
+    })
+  })
+
   Promise.all([
     readGeneratedHtml,
     readGeneratedMarkdown
@@ -123,3 +122,8 @@ if (options['send'] && !options['generate'] && !options['generate-and-send']) {
     console.log(err);
   })
 }
+
+
+process.on('unhandledRejection', function(err, promise) {
+  console.error('Unhandled rejection (promise: ', promise, ', reason: ', err, ').');
+});
