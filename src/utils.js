@@ -18,9 +18,9 @@ twig.extendFunction('specialThanks', function (mode, data) {
   return utils.buildTable(mode, data)
 })
 
-utils.generateTemplate = (data, ext) => {
+utils.generateWeeklyTemplate = (data, ext) => {
   return new Promise((resolve, reject) => {
-    twig.renderFile('./src/template.' + ext, {data}, (err, template) => {
+    twig.renderFile('./templates/weekly.' + ext, {data}, (err, template) => {
       if (err) {
         reject(err)
       }
@@ -30,7 +30,7 @@ utils.generateTemplate = (data, ext) => {
   })
 }
 
-utils.saveTemplate = (template, ext) => {
+utils.saveWeeklyTemplate = (template, ext) => {
   // save file
   let filename = './static/archive/utopian-weekly-' + moment().add(-7, 'days').format('YYYY-MM-DD') + '-' + moment().format('YYYY-MM-DD') + '.' + ext
   fs.writeFile(filename, template, function (err) {

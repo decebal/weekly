@@ -75,12 +75,12 @@ if (options['generate'] || options['generate-and-send']) {
 
       Promise.all([
         // generate templates with data
-        utils.generateTemplate(data, 'html'),
-        utils.generateTemplate(data, 'md')
+        utils.generateWeeklyTemplate(data, 'html'),
+        utils.generateWeeklyTemplate(data, 'md')
       ]).then((templates) => {
         // save templates to archive
-        utils.saveTemplate(templates[0], 'html')
-        utils.saveTemplate(templates[1], 'md')
+        utils.saveWeeklyTemplate(templates[0], 'html')
+        utils.saveWeeklyTemplate(templates[1], 'md')
 
         if (options['generate-and-send']) {
           // utils.publishWeekly(templates[0], templates[1], 'Utopian Weekly - ' + data.numbering, 'utopian-weekly-' + data.numbering.replace('/', '-'))

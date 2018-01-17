@@ -16,11 +16,11 @@ Promise.all([
 ]).then((result) => {
   let sponsorTable = buildTable('sponsor', sortByKey(result[0].results, 'vesting_shares', 6))
   let modTable = buildTable('moderator', sortByKey(result[1].results, 'total_paid_rewards_steem', 6))
-  let template = fs.readFileSync('./static/postTemplate.md').toString()
+  let template = fs.readFileSync('./templates/post.md').toString()
   template = template.replace('%sponsors%', sponsorTable)
   template = template.replace('%moderators%', modTable)
-  fs.writeFileSync('./static/archive/postTemplate.md', template)
-  console.log('Template saved to: '.green + './static/archive/postTemplate.md')
+  fs.writeFileSync('./static/archive/post-latest.md', template)
+  console.log('Template saved to: '.green + './static/archive/post-latest.md')
 })
 
 function getModeratorRow (moderator) {
