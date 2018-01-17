@@ -11,7 +11,12 @@ const utils = {}
 // Twig truncate filter
 twig.extendFilter("truncate", (value, length) => {
   return truncate(value, length);
-});
+})
+
+// Twig "Special Thanks" function (for moderators and sponsors tables)
+twig.extendFunction("specialThanks", function(mode, data) {
+  return utils.buildTable(mode, data);
+})
 
 utils.generateTemplate = (data, ext) => {
   return new Promise((resolve, reject) => {
@@ -86,6 +91,47 @@ utils.sortByKey = (array, key, limit) => {
     let y = b[key];
     return ((x < y) ? -1 : ((x > y) ? 1 : 0));
   }).reverse().slice(0, limit);
+}
+
+utils.getModeratorRow = (moderator) => {
+  return '<td style="padding: 20px 0; background: #555555; vertical-align: top;"><center><img src="https://utopian.plus/avatar/' + moderator.account + '.png?round=true&size=50" style="border-radius:50%;"><br /><a style="color: #ffffff; font-size: 14px;" target="_blank" href="//utopian.io/@' + moderator.account + '">@' + moderator.account + '</a></center></td>';
+}
+
+utils.getSponsorRow = (sponsor) => {
+  let row = '<td style="padding: 20px 0; background: #555555; vertical-align: top;"><center><img src="https://utopian.plus/avatar/' + sponsor.account + '.png?round=true&size=50" style="border-radius:50%;"><br /><a style="color: #ffffff; font-size: 14px;" target="_blank" href="//utopian.io/@' + sponsor.account + '">@' + sponsor.account + '</a>';
+  if (sponsor.is_witness) {
+    row = row + '<br><div style="font-size: 11px;"><a style="color: #ffffff;" target="_blank" href="//v2.steemconnect.com/sign/account-witness-vote?witness=' + sponsor.account + '&approve=1">Vote Witness</a></div>';
+  }
+  row = row + '</center></td>';
+  return row;
+}
+
+utils.buildTable = (mode, data) => {
+  let table = '<table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 400px; font-family: sans-serif; color: #888888; line-height:18px;"><tr>'
+
+  if (mode === 'moderator') {
+    for (i = 0; i < data.length; i++) {
+      if (i % 2 === 0) {
+        table = table + '</tr><tr>';
+      }
+      table = table + utils.getModeratorRow(data[i]);
+    }
+  } else {
+    for (i = 0; i < data.length; i++) {
+      if (i % 2 === 0) {
+        table = table + '</tr><tr>';
+      }
+      table = table + utils.getSponsorRow(data[i]);
+    }
+  }
+
+  if (table.substr(table.length - 5) !== '</tr>') {
+    table = table + '</tr>';
+  }
+
+  table = table + '</table>';
+
+  return table;
 }
 
 module.exports = utils

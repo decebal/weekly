@@ -85,12 +85,12 @@ by [{{ contribution.author }}](https://utopian.io/@{{ contribution.author }}), {
 
 #### A Special Thanks to The Sponsors
 
-{% for sponsor in data.sponsors %}
-@{{ sponsor.account }}{% if not loop.last %}, {% endif %}
-{% endfor %}
+{{ specialThanks('sponsor', data.moderators) }}
+
+A list of all our sponsors can be found on [utopian.io/sponsors](https://utopian.io/sponsors)
 
 ### A Special Thanks to The Moderators
 
-{% for moderator in data.moderators %}
-@{{ moderator.account }}{% if not loop.last %}, {% endif %}
-{% endfor %}
+{{ specialThanks('moderator', data.moderators) }}
+
+A list of all our moderators can be found on [utopian.io/moderators](https://utopian.io/moderators)
