@@ -5,10 +5,8 @@ const args = require('command-line-args')
 const fs = require('fs')
 const utils = require('./utils')
 const steem = require('steem')
-const twig = require('twig')
 const moment = require('moment')
 const utopian = require('utopian-api')
-const truncate = require('truncate')
 const config = require('../config')
 
 // Command args
