@@ -107,18 +107,18 @@ utils.getSponsorRow = (sponsor) => {
 }
 
 utils.buildTable = (mode, data) => {
-  let table = '<table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 400px; font-family: sans-serif; color: #888888; line-height:18px;"><tr>'
+  let table = '<table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 400px; font-family: sans-serif; color: #888888; line-height:18px;"><tr><td><img src="https://ipfs.io/ipfs/QmYzx9c14NJu29T88k4P2di51Fn6Jq7kYzqNa4V5meB4HN" alt="" /></td><td><img src="https://ipfs.io/ipfs/QmYzx9c14NJu29T88k4P2di51Fn6Jq7kYzqNa4V5meB4HN" alt="" /></td></tr><tr>'
 
   if (mode === 'moderator') {
     for (i = 0; i < data.length; i++) {
-      if (i % 2 === 0) {
+      if (i && i % 2 === 0) {
         table = table + '</tr><tr>'
       }
       table = table + utils.getModeratorRow(data[i])
     }
   } else {
     for (i = 0; i < data.length; i++) {
-      if (i % 2 === 0) {
+      if (i && i % 2 === 0) {
         table = table + '</tr><tr>'
       }
       table = table + utils.getSponsorRow(data[i])
