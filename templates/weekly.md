@@ -10,8 +10,8 @@
 
 # <center>Top Projects</center>
 
-### [{{ data.projects[0].github.name }}]({{ data.projects[0].project_url }}) ({{ data.projects[0].count }} Contributions)
-{{ data.projects[0].github.description }}
+### [{{ data.projects[0].github.name | truncate(35) }}]({{ data.projects[0].project_url }}) ({{ data.projects[0].count }} Contributions)
+{{ data.projects[0].github.description | truncate(150) }}
 
 [![{{ data.projects[0].github.name }}](https://res.cloudinary.com/hpiynhbhq/image/upload/v1510150908/xx4shp2yiekby5d6sify.png)]({{ data.projects[0].project_url }})
 
@@ -19,16 +19,16 @@
 <tr>
 <td>
 
-### [{{ data.projects[1].github.name }}]({{ data.projects[1].project_url }}) ({{ data.projects[1].count }} Contributions)
-{{ data.projects[1].github.description }}
+### [{{ data.projects[1].github.name | truncate(35) }}]({{ data.projects[1].project_url }}) ({{ data.projects[1].count }} Contributions)
+{{ data.projects[1].github.description | truncate(75) }}
 
 [![{{ data.projects[1].github.name }}](https://res.cloudinary.com/hpiynhbhq/image/upload/v1510150908/xx4shp2yiekby5d6sify.png)]({{ data.projects[1].project_url }})
 
 </td>
 <td>
 
-### [{{ data.projects[2].github.name }}]({{ data.projects[2].project_url }}) ({{ data.projects[2].count }} Contributions)
-{{ data.projects[2].github.description }}
+### [{{ data.projects[2].github.name | truncate(35) }}]({{ data.projects[2].project_url }}) ({{ data.projects[2].count }} Contributions)
+{{ data.projects[2].github.description | truncate(75) }}
 
 [![{{ data.projects[2].github.name }}](https://res.cloudinary.com/hpiynhbhq/image/upload/v1510150908/xx4shp2yiekby5d6sify.png)]({{ data.projects[2].project_url }})
 
@@ -41,15 +41,15 @@
 
 <table><tr><td>
 
-### [{{ data.newcomers[0].github.name }}]({{ data.newcomers[0].project_url }}) ({{ data.newcomers[0].count }} Contributions)
-{{ data.newcomers[0].github.description }}
+### [{{ data.newcomers[0].github.name | truncate(35) }}]({{ data.newcomers[0].project_url }}) ({{ data.newcomers[0].count }} Contributions)
+{{ data.newcomers[0].github.description | truncate(75) }}
 
 [![{{ data.newcomers[0].github.name }}](https://res.cloudinary.com/hpiynhbhq/image/upload/v1510150908/xx4shp2yiekby5d6sify.png)]({{ data.newcomers[0].project_url }})
 
 </td><td>
 
-### [{{ data.newcomers[1].github.name }}]({{ data.newcomers[1].project_url }}) ({{ data.newcomers[1].count }} Contributions)
-{{ data.newcomers[1].github.description }}
+### [{{ data.newcomers[1].github.name | truncate(35) }}]({{ data.newcomers[1].project_url }}) ({{ data.newcomers[1].count }} Contributions)
+{{ data.newcomers[1].github.description | truncate(75) }}
 
 [![{{ data.newcomers[1].github.name }}](https://res.cloudinary.com/hpiynhbhq/image/upload/v1510150908/xx4shp2yiekby5d6sify.png)]({{ data.newcomers[1].project_url }})
 
@@ -57,15 +57,15 @@
 
 <table><tr><td>
 
-### [{{ data.newcomers[2].github.name }}]({{ data.newcomers[2].project_url }}) ({{ data.newcomers[2].count }} Contributions)
-{{ data.newcomers[2].github.description }}
+### [{{ data.newcomers[2].github.name | truncate(35) }}]({{ data.newcomers[2].project_url }}) ({{ data.newcomers[2].count }} Contributions)
+{{ data.newcomers[2].github.description | truncate(75) }}
 
 [![{{ data.newcomers[2].github.name }}](https://res.cloudinary.com/hpiynhbhq/image/upload/v1510150908/xx4shp2yiekby5d6sify.png)]({{ data.newcomers[2].project_url }})
 
 </td><td>
 
-### [{{ data.newcomers[3].github.name }}]({{ data.newcomers[3].project_url }}) ({{ data.newcomers[3].count }} Contributions)
-{{ data.newcomers[3].github.description }}
+### [{{ data.newcomers[3].github.name | truncate(35) }}]({{ data.newcomers[3].project_url }}) ({{ data.newcomers[3].count }} Contributions)
+{{ data.newcomers[3].github.description | truncate(75) }}
 
 [![{{ data.newcomers[3].github.name }}](https://res.cloudinary.com/hpiynhbhq/image/upload/v1510150908/xx4shp2yiekby5d6sify.png)]({{ data.newcomers[3].project_url }})
 
