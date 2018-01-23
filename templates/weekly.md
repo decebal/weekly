@@ -102,7 +102,7 @@ We are made of developers, system administrators, entrepreneurs, artists, conten
 
 #### A Special Thanks to The Sponsors
 
-{{ specialThanks('sponsor', data.moderators) }}
+{{ specialThanks('sponsor', data.sponsors) }}
 
 A list of all our sponsors can be found on [utopian.io/sponsors](https://utopian.io/sponsors)
 
