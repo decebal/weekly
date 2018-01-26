@@ -5,7 +5,7 @@
 ## Install
 
 ```
-clone https://github.com/utopian-io/weekly.git
+git clone https://github.com/utopian-io/weekly.git
 cd weekly
 npm install
 ```
