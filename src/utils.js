@@ -1,10 +1,11 @@
+/* eslint-disable */
 const nodemailer = require('nodemailer')
 const fs = require('fs')
 const steem = require('steem')
 const twig = require('twig')
 const moment = require('moment')
 const truncate = require('truncate')
-const config = require('../config')
+const config = process.env;
 
 const utils = {}
 

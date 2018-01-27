@@ -1,3 +1,4 @@
+/* eslint-disable */
 'use strict'
 const nodemailer = require('nodemailer')
 const request = require('request')
@@ -7,7 +8,7 @@ const utils = require('./utils')
 const steem = require('steem')
 const moment = require('moment')
 const utopian = require('utopian-api')
-const config = require('../config')
+const config = process.env;
 
 // Command args
 const defaults = [

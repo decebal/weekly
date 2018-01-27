@@ -12,11 +12,12 @@ npm install
 
 ## Config
 
-You have to create a `config.js` to store some config parameters. Copy `config.dist.js`, rename and edit it.
+I had to move config in config/prod.env.js but the accounts are only examples.
+In order to have them overwritten use 
 
 ```
-cp config.dist.js config.js
-vim|nano|whatever config.js
+vim|nano|whatever config/prod.env.js
+vim|nano|whatever config/dev.env.js
 ```
 
 ### Parameters
