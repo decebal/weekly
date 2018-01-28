@@ -1,22 +1,24 @@
-/* eslint-disable */
-import Vue from 'vue'
-import App from './App.vue'
-import store from '../vuex/store'
-import * as OfflinePluginRuntime from 'offline-plugin/runtime'
+/* eslint-disable no-new */
+import Vue from "vue";
+import * as OfflinePluginRuntime from "offline-plugin/runtime";
+import App from "./App";
+import store from "../vuex/store";
 
-if (process.env.NODE_ENV === 'production') {
-  OfflinePluginRuntime.install({
-    onUpdateReady () {
-      OfflinePluginRuntime.applyUpdate()
-    },
-    onUpdated () {
-      window.location.reload()
-    }
-  })
+
+if (process.env.NODE_ENV === "production") {
+    OfflinePluginRuntime.install({
+        onUpdateReady: function () {
+            OfflinePluginRuntime.applyUpdate();
+        },
+        onUpdated: function () {
+            window.location.reload();
+        }
+    });
 }
 
 new Vue({
-  el: '#app',
-  store,
-  render: h => h(App)
-})
+    el: "#app",
+    store: store,
+    render: h => h(App)
+});
+

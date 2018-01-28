@@ -3,7 +3,12 @@ root = true
 [*]
 charset = utf-8
 indent_style = space
-indent_size = 2
+indent_size = 4
 end_of_line = lf
 insert_final_newline = true
 trim_trailing_whitespace = true
+spaces_before_and_after_parameters = 1
+spaces_between_comma_and_parameters = 1
+space_or_newline_for_function_starting_bracket = space
+new_lines_between_startingbracket_and_functionbody = 1
+new_lines_between_functionbody_and_endingbracket = 1

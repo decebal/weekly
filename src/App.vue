@@ -12,27 +12,27 @@
 </template>
 
 <script>
-import sideMenu from './components/sideMenu.vue'
-import navBar from './components/navBar.vue'
-import inputer from './components/inputer.vue'
-import outputer from './components/outputer.vue'
+    import sideMenu from "./components/sideMenu";
+    import navBar from "./components/navBar";
+    import inputer from "./components/inputer";
+    import outputer from "./components/outputer";
 
-export default {
-  components: {
-    sideMenu,
-    navBar,
-    inputer,
-    outputer
-  },
-  mounted () {
-    this.$store.dispatch('loadCache')
-  },
-  computed: {
-    showMenu () {
-      return this.$store.state.showMenu
-    }
-  }
-}
+    export default {
+        components: {
+            sideMenu: sideMenu,
+            navBar: navBar,
+            inputer: inputer,
+            outputer: outputer
+        },
+        mounted: function () {
+            this.$store.dispatch("loadCache");
+        },
+        computed: {
+            showMenu: function () {
+                return this.$store.state.showMenu;
+            }
+        }
+    };
 </script>
 
 <style lang="less">

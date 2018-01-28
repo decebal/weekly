@@ -3,18 +3,18 @@
 </template>
 
 <script>
-  export default {
-    data () {
-      return {
-        scrollTrigger: false
-      }
-    },
-    computed: {
-      ripeTxt () {
-        return this.$store.getters.articleMd
-      }
-    }
-  }
+    export default {
+        data: function () {
+            return {
+                scrollTrigger: false
+            };
+        },
+        computed: {
+            ripeTxt: function () {
+                return this.$store.getters.articleMd;
+            }
+        }
+    };
 </script>
 
 <style scoped lang="less">

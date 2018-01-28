@@ -5,35 +5,35 @@
 </template>
 
 <script>
-	export default {
-		computed: {
-			rawTxt () {
-				return this.$store.getters.articleRaw
-			}
-		},
-		methods: {
-			inputting (e) {
-				this.$store.dispatch('textInput', e.target.value)
-				this.$store.dispatch('saveToCache')
-			},
-			syncStroll (e) {
-				let outputer = document.querySelector('.outputer')
-				outputer.scrollTop = e.target.scrollTop
-			},
-			dragging (e) {
-				let self = this
-	      let dt = e.dataTransfer;
-	      let files = dt.files;
-	      let fileReader = new FileReader();
-	      fileReader.readAsText(files[0], 'UTF-8');
-	      fileReader.onloadend = function (e) {
-	        let value = e.target.result
-	        self.$store.dispatch('textInput', value)
-	        self.$store.dispatch('saveToCache')
-	      }
-			}
-		}
-	}
+    export default {
+        computed: {
+            rawTxt: function () {
+                return this.$store.getters.articleRaw;
+            }
+        },
+        methods: {
+            inputting: function (e) {
+                this.$store.dispatch("textInput", e.target.value);
+                this.$store.dispatch("saveToCache");
+            },
+            syncStroll: function (e) {
+                const outputer = document.querySelector(".outputer");
+                outputer.scrollTop = e.target.scrollTop;
+            },
+            dragging: function (e) {
+                const self = this;
+                const dt = e.dataTransfer;
+                const files = dt.files;
+                const fileReader = new FileReader();
+                fileReader.readAsText(files[0], "UTF-8");
+                fileReader.onloadend = (event) => {
+                    const value = event.target.result;
+                    self.$store.dispatch("textInput", value);
+                    self.$store.dispatch("saveToCache");
+                };
+            }
+        }
+    };
 </script>
 
 <style scoped lang="less">
