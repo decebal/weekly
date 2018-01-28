@@ -21,7 +21,7 @@ twig.extendFunction('specialThanks', function (mode, data) {
 
 utils.generateWeeklyTemplate = (data, ext) => {
   return new Promise((resolve, reject) => {
-    twig.renderFile('./templates/weekly.' + ext, {data}, (err, template) => {
+    twig.renderFile('./static/templates/weekly.' + ext, {data}, (err, template) => {
       if (err) {
         reject(err)
       }

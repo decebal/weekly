@@ -72,9 +72,9 @@ Generate post template to `static/archive/post-latest.md`:
 The basis for the generation are the files in the template directory, which are rendered and populated with data by [Twig](https://www.npmjs.com/package/twig).
 
 ```
-teampltes/post.md
-templates/weekly.html
-templates/weekly.md
+static/templates/post.md
+static/templates/weekly.html
+static/templates/weekly.md
 ```
 
 # TODO
