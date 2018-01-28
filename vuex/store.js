@@ -70,7 +70,19 @@ export default new Vuex.Store({
                 }
             }
         },
-        SELECT_THIS: function (state, index) {
+        SELECT_THIS_TEMPLATE: function (state, index) {
+            for (let i = 0, len = state.templateList.length; i < len; i++) {
+                state.templateList[i].current = false;
+            }
+            for (let i = 0, len = state.archiveList.length; i < len; i++) {
+                state.archiveList[i].current = false;
+            }
+            state.templateList[index].current = true;
+        },
+        SELECT_THIS_ARCHIVE: function (state, index) {
+            for (let i = 0, len = state.templateList.length; i < len; i++) {
+                state.templateList[i].current = false;
+            }
             for (let i = 0, len = state.archiveList.length; i < len; i++) {
                 state.archiveList[i].current = false;
             }
@@ -126,6 +138,27 @@ export default new Vuex.Store({
                 state.archiveList = articleArr;
                 state.archiveList[0].current = true;
             }
+        },
+        READ_LIST_T_FROM_LOCAL: function (state) {
+            if (localStorage.getItem("idArrT")) {
+                state.templateList = null;
+                const idArrT = localStorage.getItem("idArrT").split(",");
+                const articleArr = [];
+                for (let i = 0, len = idArrT.length; i < len; i++) {
+                    const articleObj = {
+                        id: createID(),
+                        title: "",
+                        content: "",
+                        current: false
+                    };
+                    articleObj.id = idArrT[i];
+                    articleObj.content = localStorage.getItem(idArrT[i]);
+                    articleObj.title = idArrT[i];
+                    articleArr.push(articleObj);
+                }
+                state.templateList = articleArr;
+                state.templateList[0].current = true;
+            }
         }
     },
     actions: {
@@ -135,8 +168,11 @@ export default new Vuex.Store({
         textInput: function ({ commit }, txt) {
             commit("TEXT_INPUT", txt);
         },
-        selectThis: function ({ commit }, index) {
-            commit("SELECT_THIS", index);
+        selectThisTemplate: function ({ commit }, index) {
+            commit("SELECT_THIS_TEMPLATE", index);
+        },
+        selectThisArchive: function ({ commit }, index) {
+            commit("SELECT_THIS_ARCHIVE", index);
         },
         newArticle: function ({ commit }) {
             commit("NEW_ARTICLE");
@@ -153,6 +189,7 @@ export default new Vuex.Store({
         },
         loadCache: function ({ commit }) {
             commit("READ_LIST_FROM_LOCAL");
+            // commit("READ_LIST_T_FROM_LOCAL");
         },
         loadTemplates: function ({ commit }) {
             axios.get("/templates/post.md").then((response) => {
@@ -186,6 +223,11 @@ export default new Vuex.Store({
             for (let i = 0, len = state.archiveList.length; i < len; i++) {
                 if (state.archiveList[i].current) {
                     content = state.archiveList[i].content;
+                }
+            }
+            for (let i = 0, len = state.templateList.length; i < len; i++) {
+                if (state.templateList[i].current) {
+                    content = state.templateList[i].content;
                 }
             }
             return content;

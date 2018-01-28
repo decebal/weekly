@@ -7,9 +7,9 @@
     <ul class="files" id="template-list">
       <template v-for='i in templateList.length'>
         <li :class='{"current": templateList[i - 1].current}'>
-          <span @click='selectThis(i)'>{{ templateList[i - 1].title }}</span>
-          <button v-if='templateList.length > 1' class="delete-btn" @click='deleteThis(i)'><i class="fa fa-times"></i>
-          </button>
+          <span @click='selectThisTemplate(i)'>{{ templateList[i - 1].title }}</span>
+          <!--<button v-if='templateList.length > 1' class="delete-btn" @click='deleteThis(i)'><i class="fa fa-times"></i>-->
+          <!--</button>-->
         </li>
       </template>
     </ul>
@@ -17,9 +17,9 @@
     <ul class="files" id="archive-list">
       <template v-for='i in archiveList.length'>
         <li :class='{"current": archiveList[i - 1].current}'>
-            <span @click='selectThis(i)'>{{ archiveList[i - 1].title }}</span>
-          <button v-if='archiveList.length > 1' class="delete-btn" @click='deleteThis(i)'><i class="fa fa-times"></i>
-          </button>
+            <span @click='selectThisArchive(i)'>{{ archiveList[i - 1].title }}</span>
+          <!--<button v-if='archiveList.length > 1' class="delete-btn" @click='deleteThis(i)'><i class="fa fa-times"></i>-->
+          <!--</button>-->
         </li>
       </template>
     </ul>
@@ -68,8 +68,11 @@
             }
         },
         methods: {
-            selectThis: function (i) {
-                this.$store.dispatch("selectThis", i - 1);
+            selectThisTemplate: function (i) {
+                this.$store.dispatch("selectThisTemplate", i - 1);
+            },
+            selectThisArchive: function (i) {
+                this.$store.dispatch("selectThisArchive", i - 1);
             },
             newArticle: function () {
                 const filesBox = document.querySelector(".files");
