@@ -3,16 +3,16 @@
     <!--<h1>-->
     <!--<img src="../../img/logo.png" alt="">-->
     <!--</h1>-->
-    <!--<label for="template-list" class="menu-label"><i class="fa fa-file-code-o" aria-hidden="true"></i> Templates</label>-->
-    <!--<ul class="files" id="template-list">-->
-      <!--<template v-for='i in templateList.length'>-->
-        <!--<li :class='{"current": templateList[i - 1].current}'>-->
-          <!--<span @click='selectThis(i)'>{{ templateList[i - 1].title }}</span>-->
-          <!--<button v-if='templateList.length > 1' class="delete-btn" @click='deleteThis(i)'><i class="fa fa-times"></i>-->
-          <!--</button>-->
-        <!--</li>-->
-      <!--</template>-->
-    <!--</ul>-->
+    <label for="template-list" class="menu-label"><i class="fa fa-file-code-o" aria-hidden="true"></i> Templates</label>
+    <ul class="files" id="template-list">
+      <template v-for='i in templateList.length'>
+        <li :class='{"current": templateList[i - 1].current}'>
+          <span @click='selectThis(i)'>{{ templateList[i - 1].title }}</span>
+          <button v-if='templateList.length > 1' class="delete-btn" @click='deleteThis(i)'><i class="fa fa-times"></i>
+          </button>
+        </li>
+      </template>
+    </ul>
     <label for="archive-list" class="menu-label"><i class="fa fa-archive" aria-hidden="true"></i> Archive</label>
     <ul class="files" id="archive-list">
       <template v-for='i in archiveList.length'>
@@ -86,6 +86,9 @@
             },
             readFromCache: function () {
                 this.$store.dispatch("readFromCache");
+            },
+            loadTemplates: function () {
+                this.$store.dispatch("loadTemplates");
             },
             createUrl: function (mode) {
                 const self = this;

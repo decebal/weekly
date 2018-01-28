@@ -89,6 +89,9 @@ export default new Vuex.Store({
 
             state.archiveList.push(newOne);
         },
+        SET_TEMPLATE: function (state, { template }) {
+            state.templateList.push(template);
+        },
         DELETE_THIS: function (state, index) {
             if (state.archiveList.length > 1) {
                 const idArr = localStorage.getItem("idArr").split(",");
@@ -150,6 +153,31 @@ export default new Vuex.Store({
         },
         loadCache: function ({ commit }) {
             commit("READ_LIST_FROM_LOCAL");
+        },
+        loadTemplates: function ({ commit }) {
+            axios.get("/templates/post.md").then((response) => {
+                commit("SET_TEMPLATE", { template: {
+                    id: createID(),
+                    title: "Post",
+                    content: response.data,
+                    current: false
+                } });
+            }, (err) => {
+                console.log(err);
+            });
+            axios.get("/templates/weekly.md").then((response) => {
+                commit("SET_TEMPLATE", { template: {
+                    id: createID(),
+                    title: "Weekly",
+                    content: response.data,
+                    current: false
+                } });
+            }, (err) => {
+                console.log(err);
+            });
+        },
+        newTemplate: function ({ commit }) {
+            commit("SET_TEMPLATE");
         }
     },
     getters: {

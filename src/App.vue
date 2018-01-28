@@ -26,6 +26,7 @@
         },
         mounted: function () {
             this.$store.dispatch("loadCache");
+            this.$store.dispatch("loadTemplates");
         },
         computed: {
             showMenu: function () {
