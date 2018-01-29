@@ -192,7 +192,7 @@ export default new Vuex.Store({
             // commit("READ_LIST_T_FROM_LOCAL");
         },
         loadTemplates: function ({ commit }) {
-            axios.get("/templates/post.md").then((response) => {
+            axios.get("/static/templates/post.md").then((response) => {
                 commit("SET_TEMPLATE", { template: {
                     id: createID(),
                     title: "Post",
@@ -202,7 +202,7 @@ export default new Vuex.Store({
             }, (err) => {
                 console.log(err);
             });
-            axios.get("/templates/weekly.md").then((response) => {
+            axios.get("/static/templates/weekly.md").then((response) => {
                 commit("SET_TEMPLATE", { template: {
                     id: createID(),
                     title: "Weekly",
