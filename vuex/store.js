@@ -3,8 +3,10 @@ import Vuex from "vuex";
 
 const highlight = require("highlight.js");
 const marked = require("marked");
-const axios = require("axios");
+const rambda = require("rambda");
 
+
+const archiveDirectory = require("../build/files-loader.conf");
 
 marked.setOptions({
     highlight: function (code) {
@@ -34,12 +36,6 @@ export default new Vuex.Store({
     state: {
         showMenu: true,
         archiveList: [
-            {
-                id: createID(),
-                title: "Untitled",
-                content: "Untitled\n---\n",
-                current: false
-            }
         ],
         templateList: [
         ]
@@ -103,6 +99,12 @@ export default new Vuex.Store({
         },
         SET_TEMPLATE: function (state, { template }) {
             state.templateList.push(template);
+        },
+        SET_FILE_TEMPLATES: function (state, { template }) {
+            state.templateList.push(template);
+        },
+        SET_FILE_ARCHIVE: function (state, { template }) {
+            state.archiveList.push(template);
         },
         DELETE_THIS: function (state, index) {
             if (state.archiveList.length > 1) {
@@ -192,25 +194,19 @@ export default new Vuex.Store({
             // commit("READ_LIST_T_FROM_LOCAL");
         },
         loadTemplates: function ({ commit }) {
-            axios.get("/static/templates/post.md").then((response) => {
-                commit("SET_TEMPLATE", { template: {
-                    id: createID(),
-                    title: "Post",
-                    content: response.data,
-                    current: false
-                } });
-            }, (err) => {
-                console.log(err);
-            });
-            axios.get("/static/templates/weekly.md").then((response) => {
-                commit("SET_TEMPLATE", { template: {
-                    id: createID(),
-                    title: "Weekly",
-                    content: response.data,
-                    current: false
-                } });
-            }, (err) => {
-                console.log(err);
+            archiveDirectory.files.forEach((file) => {
+                const fileType = rambda.head(rambda.split("/", file.pathinfo.relativeName)).toUpperCase();
+                if (!rambda.contains(fileType, ["ARCHIVE", "TEMPLATES"])) {
+                    return;
+                }
+                commit("SET_FILE_" + fileType, {
+                    template: {
+                        id: createID(),
+                        title: file.pathinfo.name + file.pathinfo.ext,
+                        content: file.module,
+                        current: false
+                    }
+                });
             });
         },
         newTemplate: function ({ commit }) {

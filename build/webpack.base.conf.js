@@ -74,6 +74,14 @@ module.exports = {
                     limit: 10000,
                     name: utils.assetsPath("fonts/[name].[hash:7].[ext]")
                 }
+            },
+            {
+                test: require.resolve("./files-loader.conf.js"),
+                loader: "directory-loader"
+            },
+            {
+                test: /\.(html|md)(\?.*)?$/,
+                loader: "raw-loader"
             }
         ]
     },
