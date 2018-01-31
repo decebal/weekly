@@ -204,7 +204,8 @@ export default new Vuex.Store({
                         id: createID(),
                         title: file.pathinfo.name + file.pathinfo.ext,
                         content: file.module,
-                        current: false
+                        current: false,
+                        contentType: rambda.tail(file.pathinfo.ext)
                     }
                 });
             });
@@ -215,20 +216,46 @@ export default new Vuex.Store({
     },
     getters: {
         articleRaw: (state) => {
-            let content = "";
             for (let i = 0, len = state.archiveList.length; i < len; i++) {
                 if (state.archiveList[i].current) {
-                    content = state.archiveList[i].content;
+                    return state.archiveList[i].content;
                 }
             }
             for (let i = 0, len = state.templateList.length; i < len; i++) {
                 if (state.templateList[i].current) {
-                    content = state.templateList[i].content;
+                    return state.templateList[i].content;
                 }
             }
-            return content;
+            return "";
         },
-        articleMd: (state, getters) => marked(getters.articleRaw),
+        articleType: (state) => {
+            for (let i = 0, len = state.archiveList.length; i < len; i++) {
+                if (state.archiveList[i].current) {
+                    return state.archiveList[i].contentType;
+                }
+            }
+            for (let i = 0, len = state.templateList.length; i < len; i++) {
+                if (state.templateList[i].current) {
+                    return state.templateList[i].contentType;
+                }
+            }
+            return "";
+        },
+        articleTitle: (state) => {
+            let title = "";
+            for (let i = 0, len = state.archiveList.length; i < len; i++) {
+                if (state.archiveList[i].current) {
+                    title = state.archiveList[i].title;
+                }
+            }
+            for (let i = 0, len = state.templateList.length; i < len; i++) {
+                if (state.templateList[i].current) {
+                    title = state.templateList[i].title;
+                }
+            }
+            return rambda.head(rambda.split(".", title));
+        },
+        articleMd: (state, getters) => (getters.articleType === "md" ? marked(getters.articleRaw) : getters.articleRaw),
         archiveList: state => state.archiveList,
         templateList: state => state.templateList
     }

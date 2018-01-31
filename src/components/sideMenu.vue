@@ -61,10 +61,10 @@
                 return this.$store.getters.templateList;
             },
             titleHtml: function () {
-                return this.$store.getters.articleRaw.split("\n")[0] + ".html";
+                return this.$store.getters.articleTitle + ".html";
             },
             titleMd: function () {
-                return this.$store.getters.articleRaw.split("\n")[0] + ".md";
+                return this.$store.getters.articleTitle + ".md";
             }
         },
         methods: {
