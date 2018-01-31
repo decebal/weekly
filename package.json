@@ -26,6 +26,7 @@
     "twig": "^1.10.5",
     "utopian-api": "^0.3.2",
     "vue": "^2.5.2",
+    "vue-awesome-notifications": "^2.2.4",
     "vue-router": "^3.0.1",
     "vuex-action": "^1.2.1"
   },
