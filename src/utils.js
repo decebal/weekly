@@ -5,7 +5,8 @@ const steem = require('steem')
 const twig = require('twig')
 const moment = require('moment')
 const truncate = require('truncate')
-const config = process.env;
+const rambda = require("rambda");
+const config = rambda.merge(require("../config/prod.env"), require("../config/dev.env"));
 
 const utils = {}
 

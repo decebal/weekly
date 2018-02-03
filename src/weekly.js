@@ -8,14 +8,16 @@ const utils = require('./utils')
 const steem = require('steem')
 const moment = require('moment')
 const utopian = require('utopian-api')
-const config = process.env;
+const rambda = require("rambda");
+const config = rambda.merge(require("../config/prod.env"), require("../config/dev.env"));
+
 
 // Command args
 const defaults = [
   { name: 'generate', type: Boolean, defaultValue: false },
   { name: 'generate-and-send', type: Boolean, defaultValue: false },
   { name: 'send', type: String, defaultValue: false }
-]
+];
 const options = args(defaults)
 
 // API endpoints
